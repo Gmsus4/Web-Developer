@@ -1,0 +1,725 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>HTML: Formularios y Tablas</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="dc6dc680-95f4-4534-bc96-c15d7c844b37" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1496054967538-14294f2376b7?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 58.51%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🤨</span></div><h1 class="page-title">HTML: Formularios y Tablas</h1></header><div class="page-body"><hr id="c7b62baf-9c3c-42b4-aa1a-a3446adc2038"/><h2 id="c4de75dd-043b-44c1-8e85-105da1a57159" class="block-color-orange">Table</h2><p id="52b55138-9ea5-46f5-b1cb-21a4d1dce395" class="">Con la etiqueta <code>&lt;table&gt;</code> define una tabla.</p><h2 id="c53fe3ae-02bc-44cd-a675-b0efa06e7536" class="block-color-orange">Etiqueta <strong>&lt;td&gt;</strong></h2><p id="553f3a22-3064-405f-a944-6ff19c450320" class="">Cada celda de la tabla está definida por una etiqueta <code>&lt;td&gt;</code> y <code>&lt;/td&gt;</code> .</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="025a2b69-51d5-43df-8ac5-17bbcd66b5cd"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>&lt;td&gt;</code> significa datos de tabla.</div></figure><hr id="588bab59-9d63-4498-b394-c4da83a94e3a"/><h2 id="8d120370-bff9-4d70-8111-ac3fccbf2478" class="block-color-orange">Etiqueta &lt;tr&gt;</h2><p id="d1cf82e6-7798-4284-9170-d67a2a134527" class="">Cada fila de la tabla comienza con una etiqueta <code>&lt;tr&gt;</code> y termina con una etiqueta <code>&lt;/tr&gt;</code>.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="798b5a59-7c22-4d19-882c-86eb13e3ec74"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>&lt;tr&gt;</code> significa fila de tabla.</div></figure><hr id="71e3b38d-22aa-48c8-8eeb-8aa4819e129a"/><h2 id="123c5d3b-2c94-4828-bab8-576384159540" class="block-color-orange">Etiqueta &lt;th&gt;</h2><p id="0a191076-6a2f-4954-9e13-4d37f7611177" class="">A veces desea que sus celdas sean encabezados, en esos casos use la etiqueta <code>&lt;th&gt;</code> en lugar de la etiqueta &lt;td&gt;</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="40d8bf92-8aee-460b-8ffa-006abcf8462c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>&lt;th&gt;</code> significa los encabezados</div></figure><figure id="d7faee83-1788-4980-9801-6bc6b0fedc21"><div class="source"><a href="https://codepen.io/gmsus4/pen/xxraPyE">https://codepen.io/gmsus4/pen/xxraPyE</a></div></figure><hr id="84d483f5-b8f7-4c04-b063-570ac82ad228"/><h2 id="f34f0f3b-f1c4-4a93-88c9-27974e5d6bb3" class="block-color-orange">Etiqueta &lt;thead&gt;</h2><p id="8113b448-6d38-437d-b9bd-a04720be1f5d" class="">La etiqueta <code>&lt;thead&gt;</code> se usa para agrupar el contenido del encabezado en una tabla HTML.</p><pre id="25cbe8e4-dd39-4516-8213-8bfc418c311b" class="code code-wrap"><code>&lt;table&gt;
+	&lt;thead&gt;&lt;!-- Encabezado de la tabla --&gt;
+		  &lt;tr&gt;
+		    &lt;th&gt;Person 1&lt;/th&gt;
+		    &lt;th&gt;Person 2&lt;/th&gt;
+		    &lt;th&gt;Person 3&lt;/th&gt;
+		  &lt;/tr&gt;
+	&lt;/thead&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Emil&lt;/td&gt;
+    &lt;td&gt;Tobias&lt;/td&gt;
+    &lt;td&gt;Linus&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;16&lt;/td&gt;
+    &lt;td&gt;14&lt;/td&gt;
+    &lt;td&gt;10&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre><hr id="3bb4c57e-3500-4940-b363-b4e6d1b0b132"/><h2 id="a88ca8cd-da1e-476e-a573-ad73e8546037" class="block-color-orange">Etiqueta &lt;tbody&gt;</h2><p id="dd5b6efd-045b-4add-ae2e-66f43efa0495" class="">La etiqueta <code>&lt;tbody&gt;</code> se usa para agrupar el contenido del cuerpo en una tabla HTML.</p><pre id="b5a1deeb-4f5d-4605-9186-9dc8402a2c8f" class="code code-wrap"><code>&lt;table&gt;
+	&lt;thead&gt;&lt;!-- Encabezado de la tabla --&gt;
+		  &lt;tr&gt;
+		    &lt;th&gt;Person 1&lt;/th&gt;
+		    &lt;th&gt;Person 2&lt;/th&gt;
+		    &lt;th&gt;Person 3&lt;/th&gt;
+		  &lt;/tr&gt;
+	&lt;/thead&gt;
+
+	&lt;tbody&gt; &lt;!-- Cuerpo de la tabla --&gt;
+		  &lt;tr&gt;
+		    &lt;td&gt;Emil&lt;/td&gt;
+		    &lt;td&gt;Tobias&lt;/td&gt;
+		    &lt;td&gt;Linus&lt;/td&gt;
+		  &lt;/tr&gt;
+	&lt;/tbody&gt;
+
+  &lt;tr&gt;
+    &lt;td&gt;16&lt;/td&gt;
+    &lt;td&gt;14&lt;/td&gt;
+    &lt;td&gt;10&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre><hr id="fce7c1a7-2f8f-46bf-95a4-89629cfba29f"/><h2 id="37483649-9969-4338-ac9f-75f3e59aac54" class="block-color-orange">Etiqueta &lt;tfoot&gt;</h2><p id="ae57ef8e-b870-43b6-8b86-53fc3fa647e4" class="">La etiqueta <code>&lt;tfoot&gt;</code> se utiliza para agrupar el contenido del pie de página en una tabla HTML.</p><pre id="c2bb92a5-33f1-49c5-8692-260759e90207" class="code code-wrap"><code>&lt;table&gt;
+	&lt;thead&gt;&lt;!-- Encabezado de la tabla --&gt;
+		  &lt;tr&gt;
+		    &lt;th&gt;Person 1&lt;/th&gt;
+		    &lt;th&gt;Person 2&lt;/th&gt;
+		    &lt;th&gt;Person 3&lt;/th&gt;
+		  &lt;/tr&gt;
+	&lt;/thead&gt;
+
+	&lt;tbody&gt; &lt;!-- Cuerpo de la tabla --&gt;
+		  &lt;tr&gt;
+		    &lt;td&gt;Emil&lt;/td&gt;
+		    &lt;td&gt;Tobias&lt;/td&gt;
+		    &lt;td&gt;Linus&lt;/td&gt;
+		  &lt;/tr&gt;
+	&lt;/tbody&gt;
+	
+	&lt;tfoot&gt; &lt;!-- Pie de página de la tabla --&gt;
+		  &lt;tr&gt;
+		    &lt;td&gt;16&lt;/td&gt;
+		    &lt;td&gt;14&lt;/td&gt;
+		    &lt;td&gt;10&lt;/td&gt;
+		  &lt;/tr&gt;
+	&lt;/tfoot&gt;
+&lt;/table&gt;</code></pre><hr id="ddb9d2e8-3767-4736-b531-9eee8a4638ea"/><h2 id="f9466b7c-e97f-44eb-a920-faddaf144464" class="block-color-orange">Tabla terminada con algo de estilos con CSS</h2><figure id="08a987c3-e456-4549-ada1-6b2720e9f8ca"><div class="source"><a href="https://codepen.io/gmsus4/pen/xxraPyE">https://codepen.io/gmsus4/pen/xxraPyE</a></div></figure><hr id="501a3434-1622-480f-85d7-ce8138c0389c"/><h2 id="80665d92-b4c0-4ec9-bf8d-673d748d8523" class="block-color-orange">Form</h2><p id="f446217d-64bc-4785-8a44-388103f832c2" class="">La etiqueta <code>&lt;form&gt;</code> es un contenedor que contendrá un montón de controles de formulario individuales como entrada de texto y entradas de contraseñas y casillas de verificación.</p><p id="86162784-e1e7-4d66-b409-a1f4821aeac8" class="">El elemento Form también dicta dónde se deben enviar los datos del formulario cuando se envía dicho formulario.</p><p id="439e9fdd-6df7-4fd9-a50b-c86b33560ef2" class="">El atributo <code><em>action</em></code><em> </em>especifica a donde se debe enviar los datos.</p><hr id="b1867a48-bcac-487c-9e2a-8d931e795b54"/><h2 id="7d439c81-8680-4550-82b8-5f79cb985d93" class="block-color-orange">Input</h2><p id="32c155e7-22d8-47e5-81cd-eec84e03b5a8" class="">La etiqueta <code>&lt;input&gt;</code> especifica un campo de entrada donde el usuario puede ingresar datos.</p><p id="daf9abb8-e150-4304-84ff-524580b8a411" class="">El elemento <code>&lt;input&gt;</code> es el elemento de formulario más importante.</p><p id="72d0d371-e0aa-48e7-a385-831aa21f9b47" class="">El elemento <code>&lt;input&gt;</code> se puede mostrar de varias formas, según el atributo de tipo.</p><pre id="6c09d707-47ef-4e0e-abf2-e0fa7e7467fa" class="code code-wrap"><code>&lt;input type=&quot;&quot;&gt;</code></pre><p id="a738a554-4d8a-4142-a8a9-f0b755f043ab" class="">Los diferentes tipos de entrada son los siguientes:</p><ul id="3b9a0216-2b43-4173-87b5-18548c15098a" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;button&quot;&gt;</code> Define un botón en el que se puede hacer clic (se usa principalmente con JavaScript para activar un script).</li></ul><ul id="08a9db89-558a-4f54-9370-a946a8ecbad6" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;checkbox&quot;&gt;</code> Define una casilla de verificación.</li></ul><ul id="062a05d0-0c69-4330-9547-533b0c1019b0" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;color&quot;&gt;</code> Define un selector de color.</li></ul><ul id="8f442fe7-d81c-420c-9eaa-957cabbfcbba" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;date&quot;&gt;</code> Define un control de fecha (año, mes, día (sin hora)).</li></ul><ul id="419d36c6-4450-4574-972a-70235448e35c" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;datetime-local&quot;&gt;</code> Define un control de fecha y hora (año, mes, día, hora (sin zona horaria).</li></ul><ul id="661cdde2-fe73-4e15-b449-09cf3e739848" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;email&quot;&gt;</code> Define un campo para una dirección de correo electrónico.</li></ul><ul id="7f14360d-fc93-4f10-95f4-16aebb395e59" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;file&quot;&gt;</code> Define un campo de selección de archivos y un botón &quot;Examinar&quot; (para cargas de archivos)</li></ul><ul id="971ce8c3-c07a-4289-9490-e85a86b7c7ef" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;image&quot;&gt;</code> Define una imagen como botón de envío.</li></ul><ul id="40a96b4e-5bf4-4c16-927f-ebc9ce814cda" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;month&quot;&gt;</code> Define un control de mes y año (sin zona horaria).</li></ul><ul id="cccba55f-1024-404d-9be6-f6d17274ede3" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;number&quot;&gt;</code> Define un campo para ingresar un número.</li></ul><ul id="891c2010-31ca-484f-ade7-5818da9b2ff6" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;password&quot;&gt;</code> Define un campo de contraseña.</li></ul><ul id="9cd99a63-0573-4b91-826b-340f0c3f3c2d" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;radio&quot;&gt;</code> Define un botón de radio.</li></ul><ul id="97d15467-7289-4f9e-a5d8-043b36e85617" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;range&quot;&gt;</code> Define un control de rango (como un control deslizante).</li></ul><ul id="f74e20ae-436f-4da5-a01d-2e2586881662" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;reset&quot;&gt;</code> Define un botón de reinicio.</li></ul><ul id="53547fd4-277f-4bf8-a9c2-622b6582216f" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;search&quot;&gt;</code> Define un campo de texto para ingresar una cadena de búsqueda.</li></ul><ul id="46447a75-9d40-4228-b734-7e60096268de" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;submit&quot;&gt;</code> Define un botón de envío.</li></ul><ul id="8297dfe7-e2d4-4b3c-b980-8fcf90926c17" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;tel&quot;&gt;</code> Define un campo para ingresar un número de teléfono.</li></ul><ul id="fd715501-1cb1-4a68-ae20-f0e5438aaa24" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;text&quot;&gt;</code> (default value).</li></ul><ul id="f93d2bab-a7c3-4b3f-96f2-f0df32248dc6" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;time&quot;&gt;</code> Define un control para ingresar una hora (sin zona horaria).</li></ul><ul id="ca29040e-da19-4808-974b-7780d7bb3646" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;url&quot;&gt;</code> Define un campo para ingresar una URL.</li></ul><ul id="38ff3ba5-36fa-4d49-a308-c6e9715c03a5" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;input type=&quot;week&quot;&gt;</code> Define un control de semana y año (sin zona horaria).</li></ul><p id="f1406f03-40b6-4c42-b393-2ac48e442fc2" class="">
+</p><figure id="ec254ed0-9152-43de-80ba-9c3ba6077619"><div class="source"><a href="https://codepen.io/gmsus4/pen/qBjMoQR">https://codepen.io/gmsus4/pen/qBjMoQR</a></div></figure><hr id="2b71b3f3-713f-40cf-9f95-5f5f6db1c6bc"/><h2 id="38a44868-295b-4d83-8090-daad8ebad3b3" class="block-color-orange">Valores de atributo</h2><div id="fae442b7-2563-4da5-9935-d21ca76ce958" class="collection-content"><h4 class="collection-title">Attributes</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Value</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Description</th></tr></thead><tbody><tr id="01c2aaf0-7abe-4970-92f3-be8757b77282"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/acept%2001c2aaf07abe497092f3be8757b77282.html">acept</a></td><td class="cell-@YKP">file_extension
+audio/*
+video/*
+image/*
+media_type</td><td class="cell-dVXN">Especifica un filtro para los tipos de archivos que el usuario puede elegir en el cuadro de diálogo de entrada de archivos (solo para type = &quot;file&quot;).</td></tr><tr id="064831bc-6f7c-4119-8f0d-dcb5bd752c68"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/alt%20064831bc6f7c41198f0ddcb5bd752c68.html">alt</a></td><td class="cell-@YKP">text</td><td class="cell-dVXN">Especifica un texto alternativo para las imágenes (solo para type = &quot;image&quot;).</td></tr><tr id="09c5a3f1-d8bb-4ea1-9074-ebd1792adf23"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/autocomplete%2009c5a3f1d8bb4ea19074ebd1792adf23.html">autocomplete</a></td><td class="cell-@YKP">on
+off</td><td class="cell-dVXN">Especifica si un elemento &lt;input&gt; debe tener habilitado el autocompletado.</td></tr><tr id="43797875-45ff-43db-b6c3-5f4ad6eca590"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/autofocus%204379787545ff43dbb6c35f4ad6eca590.html">autofocus</a></td><td class="cell-@YKP">autofocus</td><td class="cell-dVXN">Especifica que un elemento &lt;input&gt; debe recibir el foco automáticamente cuando se carga la página.</td></tr><tr id="0e7e6880-bd6f-43df-8d88-eb6621d663b0"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/checked%200e7e6880bd6f43df8d88eb6621d663b0.html">checked</a></td><td class="cell-@YKP">checked</td><td class="cell-dVXN">Especifica que se debe preseleccionar un elemento &lt;input&gt; cuando se carga la página (para type = &quot;checkbox&quot; o type = &quot;radio&quot;).</td></tr><tr id="b6fab8b1-3139-47c7-b15e-29b19f277fa4"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/dirname%20b6fab8b1313947c7b15e29b19f277fa4.html">dirname</a></td><td class="cell-@YKP">inputname.dir</td><td class="cell-dVXN">Especifica que se enviará la dirección del texto.</td></tr><tr id="989a82a7-3a0f-48f1-8126-1fb1a883ff54"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/disabled%20989a82a73a0f48f181261fb1a883ff54.html">disabled</a></td><td class="cell-@YKP">disabled</td><td class="cell-dVXN">Especifica que se debe deshabilitar un elemento &lt;input&gt;</td></tr><tr id="f8599798-45c5-41df-9810-1464bcca4ea1"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/form%20f859979845c541df98101464bcca4ea1.html">form</a></td><td class="cell-@YKP">form_id</td><td class="cell-dVXN">Especifica la forma a la que pertenece el elemento &lt;input&gt;</td></tr><tr id="64e76aae-4496-4440-b65c-48e4a8fa798f"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/formaction%2064e76aae44964440b65c48e4a8fa798f.html">formaction</a></td><td class="cell-@YKP">URL</td><td class="cell-dVXN">Especifica la URL del archivo que procesará el control de entrada cuando se envíe el formulario (para tipo = &quot;enviar&quot; y tipo = &quot;imagen&quot;).</td></tr><tr id="c3986921-475f-4995-a95e-6f688f4a2ee9"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/formenctype%20c3986921475f4995a95e6f688f4a2ee9.html">formenctype</a></td><td class="cell-@YKP">application/x-www-form-urlencoded
+multipart/form-data
+text/plain</td><td class="cell-dVXN">Especifica cómo se deben codificar los datos del formulario al enviarlos al servidor (para tipo = &quot;enviar&quot; y tipo = &quot;imagen&quot;).</td></tr><tr id="e78c773c-32ba-41ec-9d5f-5b1656329c3c"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/formmethod%20e78c773c32ba41ec9d5f5b1656329c3c.html">formmethod</a></td><td class="cell-@YKP">get
+post</td><td class="cell-dVXN">Define el método HTTP para enviar datos a la URL de acción (para tipo = &quot;enviar&quot; y tipo = &quot;imagen&quot;).</td></tr><tr id="f8d85c7d-d6cf-4b95-8e37-55c6b4c1177c"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/formnovalidate%20f8d85c7dd6cf4b958e3755c6b4c1177c.html">formnovalidate</a></td><td class="cell-@YKP">formnovalidate</td><td class="cell-dVXN">Define que los elementos del formulario no deben validarse cuando se envían</td></tr><tr id="8ae04ba0-3f30-410d-9fe1-b291b0cab434"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/formtarget%208ae04ba03f30410d9fe1b291b0cab434.html">formtarget</a></td><td class="cell-@YKP">_blank
+_self
+_parent
+_top
+framename</td><td class="cell-dVXN">Especifica dónde mostrar la respuesta que se recibe después de enviar el formulario (para tipo = &quot;enviar&quot; y tipo = &quot;imagen&quot;).</td></tr><tr id="12c27fe0-a972-4b90-8510-02bb6998286c"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/height%2012c27fe0a9724b90851002bb6998286c.html">height</a></td><td class="cell-@YKP">pixels</td><td class="cell-dVXN">Especifica la altura de un elemento &lt;input&gt; (solo para type = &quot;image&quot;).</td></tr><tr id="6a71fbf7-0dae-4ee5-953e-4f8f7971ee23"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/list%206a71fbf70dae4ee5953e4f8f7971ee23.html">list</a></td><td class="cell-@YKP">datalist_id</td><td class="cell-dVXN">Se refiere a un elemento &lt;datalist&gt; que contiene opciones predefinidas para un elemento &lt;input&gt;</td></tr><tr id="0a924b8c-163b-41b1-b9eb-720060282a13"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/max%200a924b8c163b41b1b9eb720060282a13.html">max</a></td><td class="cell-@YKP">number
+date</td><td class="cell-dVXN">Especifica el valor máximo para un elemento &lt;input&gt;</td></tr><tr id="762077ab-1187-4a68-9ce3-ddbd010068e3"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/maxlenght%20762077ab11874a689ce3ddbd010068e3.html">maxlenght</a></td><td class="cell-@YKP">number</td><td class="cell-dVXN">Especifica el número máximo de caracteres permitidos en un elemento &lt;input&gt;</td></tr><tr id="54d1697d-4337-4ee8-93c7-701fb9018566"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/min%2054d1697d43374ee893c7701fb9018566.html">min</a></td><td class="cell-@YKP">number
+date</td><td class="cell-dVXN">Especifica un valor mínimo para un elemento &lt;input&gt;</td></tr><tr id="adc5bfab-5e5e-40e5-8897-50aa08afb5e9"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/minlenght%20adc5bfab5e5e40e5889750aa08afb5e9.html">minlenght</a></td><td class="cell-@YKP">number</td><td class="cell-dVXN">Especifica el número mínimo de caracteres necesarios en un elemento &lt;input&gt;</td></tr><tr id="b98455e2-7d72-4d96-8377-e6ac53dcc648"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/multiple%20b98455e27d724d968377e6ac53dcc648.html">multiple</a></td><td class="cell-@YKP">multiple</td><td class="cell-dVXN">Especifica que un usuario puede ingresar más de un valor en un elemento &lt;input&gt;</td></tr><tr id="41ef3bda-4a14-47a0-bf88-d8ef68c20aa0"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/name%2041ef3bda4a1447a0bf88d8ef68c20aa0.html">name</a></td><td class="cell-@YKP">text</td><td class="cell-dVXN">Especifica el nombre de un elemento &lt;input&gt;</td></tr><tr id="2288b364-6a00-48ae-9af3-9c9507a3b062"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/pattern%202288b3646a0048ae9af39c9507a3b062.html">pattern</a></td><td class="cell-@YKP">regexp</td><td class="cell-dVXN">Especifica una expresión regular con la que se verifica el valor de un elemento &lt;input&gt;</td></tr><tr id="0ef98efc-c8d6-4b7c-9da4-761f533549b7"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/placeholder%200ef98efcc8d64b7c9da4761f533549b7.html">placeholder</a></td><td class="cell-@YKP">text</td><td class="cell-dVXN">Especifica una breve sugerencia que describe el valor esperado de un elemento &lt;input&gt;</td></tr><tr id="6d0ca8e8-1668-4224-b02f-4fefa8fdb617"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/readonly%206d0ca8e816684224b02f4fefa8fdb617.html">readonly</a></td><td class="cell-@YKP">readonly</td><td class="cell-dVXN">Especifica que un campo de entrada es de solo lectura.</td></tr><tr id="a56fdb1f-3ec4-4f33-8cbc-5cfdcdc1e846"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/required%20a56fdb1f3ec44f338cbc5cfdcdc1e846.html">required</a></td><td class="cell-@YKP">required</td><td class="cell-dVXN">Especifica que se debe completar un campo de entrada antes de enviar el formulario.</td></tr><tr id="fc9dff19-4d8c-4493-ae2d-47ed79356616"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/size%20fc9dff194d8c4493ae2d47ed79356616.html">size</a></td><td class="cell-@YKP">number</td><td class="cell-dVXN">Especifica el ancho, en caracteres, de un elemento &lt;input&gt;</td></tr><tr id="da5a6505-88d2-42b4-bf79-6eba399f03c1"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/src%20da5a650588d242b4bf796eba399f03c1.html">src</a></td><td class="cell-@YKP">URL</td><td class="cell-dVXN">Especifica la URL de la imagen que se utilizará como botón de envío (solo para type = &quot;image&quot;).</td></tr><tr id="048d3be5-8c9a-430f-853c-2510568284ec"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/step%20048d3be58c9a430f853c2510568284ec.html">step</a></td><td class="cell-@YKP">number
+any</td><td class="cell-dVXN">Especifica el intervalo entre números legales en un campo de entrada.</td></tr><tr id="4ac4831c-4fd3-4de4-a516-4b258facfee6"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/type%204ac4831c4fd34de4a5164b258facfee6.html">type</a></td><td class="cell-@YKP">Los que se vieron en Input</td><td class="cell-dVXN">Especifica el tipo de elemento &lt;input&gt; que se mostrará</td></tr><tr id="bbf082ba-1e3d-486b-b266-38205d977ca2"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/value%20bbf082ba1e3d486bb26638205d977ca2.html">value</a></td><td class="cell-@YKP">text</td><td class="cell-dVXN">Especifica el valor de un elemento &lt;input&gt;</td></tr><tr id="3a47dbdd-18a7-4336-b33a-342778b89adf"><td class="cell-title"><a href="HTML%20Formularios%20y%20Tablas%20dc6dc68095f44534bc96c15d7c844b37/Attributes%20fae442b725634da59935d21ca76ce958/width%203a47dbdd18a74336b33a342778b89adf.html">width</a></td><td class="cell-@YKP">pixels</td><td class="cell-dVXN">Especifica el ancho de un elemento &lt;input&gt; (solo para type = &quot;image&quot;).</td></tr></tbody></table></div><hr id="00fa6a9d-0236-4a01-a434-23a0f041a50f"/><h2 id="6a64e3e0-2407-4b8c-9dc5-ebe45bf9f8b5" class="block-color-orange">Label</h2><p id="b01b3912-b7a4-454e-b457-1efea705af9b" class="">El elemento <code>&lt;label&gt;</code> representa una etiqueta que puede ser asociada a un control de formulario, y que se supone provee una descripción corta para éste. Los navegadores pueden enlazar ambos elementos permitiendo que los usuarios establezcan el enfoque sobre el control al hacer clic en su etiqueta.</p><pre id="ad803ce6-181a-4765-9155-5cac517eabf9" class="code code-wrap"><code>&lt;label for=&quot;name&quot;&gt;Escribe tu nombre: &lt;/label&gt;
+&lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;  </code></pre><hr id="48076987-a473-4bc9-98f0-2eda354ada04"/><h2 id="55052463-18d6-448e-aed9-f9482b1c23fd" class="block-color-orange">Buttons</h2><p id="6671a797-de0f-411f-b8ee-88c3102536fa" class="">Si tienen un botón dentro de un formulario, el comportamietno predeterminado será enviar ese formulario.</p><p id="332491da-86c7-43c6-80f5-9cbc24af6eaa" class="">Pero tenemos una opción que podemos pasar en un atributo llamado <em>type.</em></p><pre id="ff21dad1-ae73-4aba-96fc-89e9d37ef717" class="code code-wrap"><code>&lt;button type=&quot;button&quot;&gt;Enviar&lt;/button&gt; &lt;!--Se comportará como un botón--&gt;
+&lt;!--Esto le dice al navegador que quiero que este botón se comporte como un botón,
+no un botón de envío, sino solo un botón antiguo normal que no hará nada.
+--&gt;
+
+&lt;button type=&quot;submit&quot;&gt; &lt;!-- Valor por defecto --&gt;</code></pre><hr id="a678c6dd-d6c9-4cb5-9947-09b18d833775"/><h2 id="9e69e9b4-882b-40bf-be41-3c23c5e50498" class="block-color-orange">Name Attribute</h2><p id="a4d7e023-79a8-41d5-94c5-bc5d4507b30e" class="">Especifica el nombre de un elemento.</p><pre id="7ef15e07-3adf-4d73-ad66-8fd42fa5dc3d" class="code code-wrap"><code>&lt;form action=&quot;&quot;&gt;
+  &lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;user-name&quot;&gt;&lt;!-----&gt;
+&lt;/form&gt;</code></pre><p id="ab87d806-06a1-4e8a-ae35-1ff568562456" class="">Al agregar el atributo name, a la hora de enviar un formulario, tendrá en cuenta el name y además lo mostrará con su respectivo valor.</p><hr id="c22da8a0-b8e4-42d5-a383-4c46474f47fe"/><h2 id="bd815692-a3ad-4d6b-852e-adea82e70bcf" class="block-color-orange">Text Area</h2><p id="3e85a4b7-0328-4068-a6b5-b1943d849888" class="">El elemento HTML <code>&lt;textarea&gt;</code> representa un control para la edición mutilínea de texto sin formato.</p><pre id="496137de-28a6-4fb3-aee9-3c2d16b2ba2a" class="code code-wrap"><code>&lt;textarea&gt; &lt;/textarea&gt;</code></pre><hr id="d9f52830-b99e-4a9c-9914-a090f8757849"/><h2 id="9e249410-8b60-436d-803b-4d41d23c811f" class="block-color-orange">Validaciones en los Formularios</h2><p id="34b4481b-4668-435b-8d31-6a14cd4a0f4d" class="">Se refiere a agregar restricciones o validar la entrada o los datos del usuario, por ejemplo, requerir que algunos campos no puedan estar vacíos o que una contraseña tenga que estar entre, 12 o 20 caracteres por ejemplo.</p><p id="51597ed8-0c2b-45ac-a8f5-7cb190ca1001" class="">Uno de los atributos que permiten de alguna manera &quot;Validar los formularios&quot; es required.</p><pre id="b3e7d3fb-701e-462f-a2b9-f6df434766d8" class="code code-wrap"><code>&lt;input type =&quot;email&quot; required&gt;</code></pre><p id="0c80fe1b-0bc1-4347-83b2-5e80af1da544" class="">Al agregar ese atributo, hace que sea requerido para el formulario, por lo contrario no podrá ser enviado.</p></div></article></body></html>

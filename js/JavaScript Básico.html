@@ -1,0 +1,650 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JavaScript Básico</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="95a34dfe-5cab-4a7e-b6ac-f0e29a29f80a" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1609008804638-1a4d863946f6?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 32.66%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🤠</span></div><h1 class="page-title">JavaScript Básico</h1></header><div class="page-body"><hr id="addc09d3-1eef-4bf8-9668-48d6436e6887"/><h2 id="0b4a51d2-78cd-4147-9429-aa50647a4389" class="block-color-yellow">Conceptos básicos de JavaScript</h2><p id="afa61ae0-ef88-401a-9019-ba586c1c7076" class="">Crear comentarios en Js</p><pre id="5d46afff-bd8b-47f9-836f-dc0bfa0b52c3" class="code code-wrap"><code>// Comentarios en Js
+console.log(&quot;Hola&quot;);</code></pre><hr id="3809d039-1f92-4bd5-a6da-3c711a5461c0"/><h2 id="e1c4a31c-2d33-4377-8d2e-3d2ef285bc22" class="block-color-yellow">Primitive Types (Tipos primitivos)</h2><p id="520490b2-388e-40a2-8cfa-4b2b5fc38044" class="">Los primitive types son solo tipos en general, son un concepto en cualquier lenguaje de programación. Diferentes tipos de información que puede almacenar, manejar y trabajar.</p><hr id="c855b75a-d755-470b-9054-17564837af69"/><h2 id="34b8a5b1-5f7c-4aa0-888b-eb0fd42308b6" class="block-color-yellow">Numbers</h2><p id="8c43654e-5c7d-48d4-a7cf-b44cc2c586f3" class=""> Son un tipo de información que está basado en números.</p><hr id="3708c1b3-9d20-4a23-b5b5-2b863f0c97ae"/><h2 id="622cd3e7-0990-4de0-82e0-17addf8d40d7" class="block-color-yellow">Math Operations</h2><h3 id="9e80121a-455a-41ec-b5cb-a2b7989d0b31" class="block-color-yellow">Adicción (Suma)</h3><p id="39e206dd-c49d-4e87-9312-475d332858a3" class="">El operador de adición (+) produce la suma de operandos numéricos o la concatenación de (cadenas) string.</p><pre id="2e54ab9e-4dad-48d5-8b17-bfa9f8782de7" class="code code-wrap"><code>50 + 50 </code></pre><h3 id="bf700c73-9a22-4913-bacb-f3f9cfcbf779" class="block-color-yellow">Substracción (Resta)</h3><p id="0283ca42-f97b-42a8-849e-48d8beb5c817" class="">El operador de sustracción (-) sustrae dos operandos, produciendo su diferencia.</p><pre id="bf8812be-0458-4563-8f9a-680a0b113896" class="code code-wrap"><code>90 - 1</code></pre><h3 id="04061767-18d0-44c6-a883-eb6be5e3cafd" class="block-color-yellow">Multiplicación</h3><p id="7a2eb23c-252d-4326-bd57-b3cecbdbd094" class="">El operador de multiplicación (*) produce el producto de los operandos.</p><pre id="df904387-b3c6-4ba6-abcd-ad425fe3ffc2" class="code code-wrap"><code>1111 * 7</code></pre><h3 id="711b82c3-5af2-41a2-a83b-5ad181aa043a" class="block-color-yellow">División</h3><p id="4befc83d-8a39-4d50-8861-655a28bf05d1" class="">El operador de división (/) produce el cociente de sus operandos donde el operando izquierdo es el dividendo y el operando derecho es el divisor.</p><pre id="a94ad4bb-e82e-457e-a3a8-4994d3f5f0a3" class="code code-wrap"><code>400 / 25</code></pre><h3 id="332286f0-b665-4dc6-82fa-4bea368564b1" class="block-color-yellow">Modulo</h3><p id="82e6361b-dc2b-4567-8606-1f36e3d4442c" class="">El operador resto (%) devuelve el resto de la división entre dos operandos. Siempre toma el signo del dividendo.</p><pre id="d2e08d2b-f861-4675-878a-7c91cae18a26" class="code code-wrap"><code>25 % 4</code></pre><h3 id="8adadd72-1fa9-4440-abfd-737d9371c3cf" class="block-color-yellow">Exponentes</h3><p id="b251b7a0-81bc-4bd5-b02c-3657b314efd5" class="">El operador de exponenciación (**) devuelve el resultado de elevar el primer operando a la potencia del segundo operando. Es equivalente a Math.pow, excepto que también acepta BigInts como operandos.</p><pre id="583b5482-ac82-4bff-a6e4-a00d3a87406d" class="code code-wrap"><code>5 ** 2 </code></pre><hr id="8cb1463b-49ca-4eaa-ae5c-14735258f30d"/><h2 id="800d45b0-ae25-43da-ba70-72f2d1122f8f" class="block-color-yellow">¿Qué es NaN?</h2><p id="dfbf81b8-1a60-4cfd-955e-21a39bd11973" class="">Representa algo que no es número, pero se considera un tipo de número.</p><p id="e9aed122-6381-4a99-bce6-2f8057d84ec3" class="">Un valor representando un Not-A-Number (No es Un Número).</p><hr id="49aaecb1-efaf-4e1c-bef4-149f77c8eacf"/><h2 id="90565c4c-3bc7-4c96-be84-e26eb677aef0" class="block-color-yellow">Variables &amp; Let</h2><p id="8f831cbd-d60f-447d-b41d-5abdf146c910" class="">Una variable es la forma de darle nombre a un valor y almacenarlo usando JavaScript para que podamos volver a él más tarde y reutilizarlo o actualizarlo o simplemente recordarlo.</p><pre id="7fc59412-2f45-400d-8fe7-0ca963d1fe0d" class="code code-wrap"><code>let nombreVariable = &quot;Valor&quot;; // El valor es una cadena de texto.
+
+// Otro ejemplo:
+
+let miEdad = 21; // El valor es una número.</code></pre><hr id="a3f3d4cb-208e-4df0-af82-1fbb04fe79ac"/><h2 id="207eed59-ba97-487e-b227-bf25d41c7157" class="block-color-yellow">Actualizar Variables</h2><pre id="81e3fb9f-798b-4274-a6a7-2953670e5464" class="code code-wrap"><code>let numLives = 9;
+numLives++; //Actualiza la variable y le suma 1.
+numLives--; //Actualiza la variable y le resta 1.
+
+numLives += 10; //Actualiza la variable y le suma 10.
+numLives -= 10; //Actualiza la variable y le resta 10.
+numLives -* 10; //Actualiza la variable y lo multiplica por 10. 
+numLives -/ 10; //Actualiza la variable y lo divide entre 10. 
+</code></pre><hr id="b86201ad-2512-411a-b912-5710fd714324"/><h2 id="6ba1c139-0365-4916-ad63-7a91de4d8211" class="block-color-yellow">Const</h2><p id="73d24d8f-ce90-4fa7-8982-3726eea62b20" class="">Const significa constante y una constante es un valor que no cambia, permanece constante.</p><pre id="f4d58f84-163c-49f4-ae9a-60e868510467" class="code code-wrap"><code>const numero = 3592156161;</code></pre><p id="a821bc5d-4679-465b-a9a7-eeb0bd84a943" class="">La variable const no puede ser actualizada, una vez declarada su valor siempre será el mism</p><hr id="4b5ad8c8-001a-41cc-a13f-02dcf2e72ff7"/><h2 id="8b36953f-48f4-47d3-81f6-d2634941a275" class="block-color-yellow">Booleans</h2><p id="696e417d-4ae4-4272-a826-d07aeb995812" class="">Los valores para los Booleans son 2, verdadero o falso. <code>true</code> o <code>false</code></p><pre id="074af5f5-fb7b-408f-beda-bf9dabe733e2" class="code code-wrap"><code>let timeDay = true;
+let timeNight = false;</code></pre><hr id="3aae6840-cb53-438c-a737-00e6c351403c"/><h2 id="a7904fc0-1a3b-4f1a-a885-6fae290e94c2" class="block-color-yellow">Camel Case</h2><p id="fe0ae6ec-2d79-4398-a338-3fd6412213c2" class=""><strong>Camel case</strong> (estilizado como <strong>camelCase</strong>) o <strong>letra de caja camello</strong> es un estilo de escritura que se aplica a frases o palabras compuestas. El nombre se debe a que las mayúsculas a lo largo de una palabra en CamelCase se asemejan a las jorobas de un <a href="https://es.wikipedia.org/wiki/Camelus">camello</a>. El nombre CamelCase se podría traducir como Mayúsculas/Minúsculas Camello. El término case se traduce como &quot;caja tipográfica&quot;, que a su vez implica si una letra es mayúscula o minúscula y tiene su origen en la disposición de los tipos móviles en casilleros o cajas.</p><p id="ea83d597-14f4-42bb-8880-26b23eedb000" class="">Existen dos tipos de CamelCase:</p><ul id="7a3cf2b4-ea21-4c09-a29c-5a77faba0557" class="bulleted-list"><li style="list-style-type:disc">UpperCamelCase (más conocido como <a href="http://wiki.c2.com/?PascalCase">PascalCase</a>), cuando la primera letra de cada una de las palabras es mayúscula. Ejemplo: <p id="75e3ccbc-483b-4550-b82b-920736db6cb0" class=""><strong>EjemploDeUpperCamelCase</strong></p></li></ul><ul id="bf14686b-6259-4d3b-b1a7-dae297ec19f6" class="bulleted-list"><li style="list-style-type:disc">lowerCamelCase (o simplemente CamelCase), igual que la anterior con la excepción de que la primera letra es minúscula. Ejemplo: <p id="8872f186-c435-4396-8401-d0c0156a2f4f" class=""><strong>ejemploDeLowerCamelCase</strong></p></li></ul><pre id="b693c7a1-eba5-44ad-b63d-80dd5e7b0b4d" class="code code-wrap"><code>let diaDeLaIndependencia = 16; // lowerCamelCase</code></pre></div></article></body></html>

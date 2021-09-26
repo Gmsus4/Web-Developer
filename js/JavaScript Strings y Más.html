@@ -1,0 +1,692 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JavaScript Strings y Más</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a74a3dd9-518f-4d23-b93c-d68634a27de2" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1632491093482-8370c2bf84c8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" style="object-position:center 32.14%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🤭</span></div><h1 class="page-title">JavaScript Strings y Más</h1></header><div class="page-body"><h2 id="1c66449b-f9a8-4f1a-9d0d-8d06784cb099" class="block-color-yellow">Introducción a Strings</h2><p id="ebbffe54-be5d-4340-b40f-7a1a14d3d4d1" class="">String es básicamente información de texto, una cadena de caracteres. Estos deben ir entre comillas.</p><pre id="9ab631a4-e927-4d4e-853a-64a5357ec6b7" class="code code-wrap"><code>let username = &quot;Elena&quot;; // &quot;Elena&quot; es un string, va entre las comillas.
+
+let username = &#x27;Fernando&#x27;; // También se pueden usar comillas simples.</code></pre><hr id="21d2da61-3afe-4bdd-bbaa-f8e62fce8680"/><h2 id="4056a756-eace-424d-b4d6-55cb0de794ba" class="block-color-yellow">Indices &amp; Length</h2><p id="96e2b6c8-3507-4614-bbdb-0e0e87f60fe9" class="">Las cadenas están indexadas, lo que significa es que cada caracter de una cadena tiene un número correspondiente asociado, un número posicional que va en orden desde el principio de la cadena comenzando desde cero.</p><p id="1976a8b7-d5bc-4996-8d2a-b74a0851105c" class="">Para acceder a un caracter en específico de una cadena de texto, podemos utilizar:</p><pre id="1d597698-d46e-4177-b291-3eac6ec17dc1" class="code code-wrap"><code>// 012345 - Como las cadenas empiezan desde 0.
+// México
+
+let estado = &quot;México&quot;;
+
+estado[0]; // Lo que mostrará es la M.
+estado[4]; // Lo que mostrará es la c.
+
+</code></pre><p id="bf872299-d687-49ab-8969-dcaf6412a0eb" class="">Para contar los caracteres en total de una cadena se utiliza:</p><pre id="971df6b4-750b-4254-acd6-9a07824cabf7" class="code code-wrap"><code>let estado = &quot;México&quot;;
+
+estado.length // Muestra el total de caracteres en este caso es 6</code></pre><p id="0fb85e94-b1cd-4ccc-849e-3044e8105fd8" class="">A la suma de cadenas se le llama concadenación.</p><pre id="71890b60-c7f6-4eb0-8a1d-7d9746778efa" class="code code-wrap"><code>let saludo = &quot;Hola &quot;;
+let username =&quot;Elena&quot;;
+
+saludo + username; //Resultado es &#x27;Hola Elena&#x27;.</code></pre><hr id="818b92d1-9749-44d5-9d71-c19911bdf428"/><h2 id="d3fe0e6e-b68c-402b-8ffa-3086798d00a4" class="block-color-yellow">String Methods (Métodos de cadena)</h2><p id="2b37f4da-6e33-49a5-a6c0-e94d39eb7557" class="">Son acciones que puedo tomar.</p><h3 id="44dcf7ac-fd0e-40bf-a423-982a2526b4d6" class="block-color-yellow">Sintaxis</h3><pre id="c1868941-eb09-405d-aca5-6db1131e11c2" class="code code-wrap"><code>thin.method();</code></pre><p id="e10547af-f450-4a6f-9958-da254b5e3347" class=""><strong>.toUpperCase( )</strong> Hace la cadena de string en MAYÚSCULAS. </p><p id="72ce68f4-8fab-498d-9771-5c151718d7a4" class="">.<strong>toLowerCase( )</strong> Hace la cade de string en minusculas.</p><p id="a990327d-c185-4615-b5ec-f37111b36780" class="">La cadena original no sufre ningún cambio. Solo duplica el valor del string y lo transforma, todo esto si guardamos la información en otra variable.</p><pre id="b4ddd8d6-adc5-4330-89d4-70b8b69e33e6" class="code code-wrap"><code>let frase = &quot;Te he dicho que no llegues tan tarde&quot;;
+let enojado = frase.toUpperCase();
+let muyTranquilo = frase.toLowerCase();
+
+frase // Muestra: &quot;Te he dicho que no llegues tan tarde&quot;.
+enojado // Muestra: &quot;TE HE DICHO QUE NO LLEGUES TAN TARDE&quot;.
+muyTranquilo //Muestra &quot;te he dicho que no llegues tan tarde&quot;.</code></pre><p id="08d9e367-6374-4fa3-9294-096aa2f98546" class=""><strong>.trim( ) </strong>Trim recorta cualquier espacio en blanco al principio y al final de una cadena.</p><pre id="e1107807-e2ab-43d6-9103-bb8595c129c6" class="code code-wrap"><code>let userName = &quot;   Mi nombre es Eva &quot;;
+userName.trim() // Resultado: &quot;Mi nombre es Eva&quot;. Sin espacios al inicio o al final </code></pre><p id="c9b00736-f25c-4415-889c-79d40ae6fc27" class="">También podemos unir métodos de cadena.</p><pre id="ec89a026-e2bf-4327-8785-2c8f2fc52a38" class="code code-wrap"><code>let userName = &quot;       mi nombre es Elena &quot;;
+userName.trim().toUpperCase(); // Mostrará: &quot;MI NOMBRE ES ELENA&quot;.</code></pre><hr id="fa90760a-dcb4-4d03-9506-e791ed157326"/><h2 id="f39edd09-cfd9-40bb-b20c-3b5e751a2fe2" class="block-color-yellow">String Methods whit Arguments</h2><p id="b9f48455-0653-44fd-9866-3d4bc352ec3a" class="">Los argumentos son solo entradas que podemos pasar al método para alterar su comportamiento.</p><pre id="5930dc79-72d3-4d3c-99b9-610c5e53e0ab" class="code code-wrap"><code>thing.method(arg);</code></pre><h2 id="d5a2afb4-3543-42b9-ac42-6685060c2b2c" class="block-color-yellow">IndexOf</h2><p id="0cd7e980-1e16-4cfe-80cf-8c72bd24fa67" class="">Nos mostrará el índice de la cadena y el número posicional donde un argumento dado ocurre en una cadena.</p><p id="23e132a1-b8f0-483b-a08d-14dee4d2299f" class="">El método <strong>indexOf( )</strong> retorna el primer índice en el que se puede encontrar un elemento dado en el array, ó retorna -1 si el elemento no esta presente. </p><pre id="e6fe0953-3126-4745-b23f-1426d47d859f" class="code code-wrap"><code>let frase = &quot;Hola mi nombre es Pedro y quiero comprar el nuevo iPhone&quot;;
+frase.indexOf(&quot;i&quot;); //Busca en que posición está el primer caracter de &quot;iPhone&quot;.</code></pre><hr id="f8153b7a-21c6-4b8d-9e5a-7ca644d00b98"/><h2 id="be81032e-65df-42a6-87c6-80f749a290a1" class="block-color-yellow">Slice</h2><p id="a547d1fc-b89e-49aa-8269-42e10114b87e" class="">Slice va a extraer o cortar una parte de una cadena y la devuelve o nos la da como una nueva cadena. Entonces podemos pasar dos numeros, los índices de los que queremos cortar nuestra cadena.</p><pre id="0298a81e-b035-428d-b1ca-8e5d4fde8fa1" class="code code-wrap"><code>let frase = &quot;Hola mi nombre es Pedro y quiero comprar el nuevo iPhone&quot;;
+frase.slice(18); //Resultado: &quot;Pedro y quiero comprar el nuevo iPhone&quot;.
+
+//Los numeros arriba son el total de caracteres, al llegar a 10, lo remplacé por 1, así con los demás.
+
+						 01234567891123456789212345678931234567894123456789512345	
+let frase = &quot;Hola mi nombre es Pedro y quiero comprar el nuevo iPhone&quot;;
+frase.slice(18,23); //Resultado: &quot;Pedro&quot;. El último número no lo toma en cuenta &quot;23&quot;.
+
+//Podemos convinar IndexOf con Slice.
+
+let newFrase = &quot;Bieeeeeeenvenidos a DocTops&quot;;
+newFrase.slice(newFrase.indexOf(&quot;DocTops&quot;),newFrase.lastIndexOf(&quot;s&quot;)+1);
+// Recorte desde (La primera D, hasta la última s, pero el último caracter no lo toma en cuenta, así que le sumé un valor más, para que agregue a la s.
+// Resultado: &quot;DocTops&quot;.</code></pre><hr id="7c4181ee-596d-4f72-9655-93911c7d1886"/><h2 id="7adaf6b9-3c4b-47e8-9e0a-b00ba815e938" class="block-color-yellow">Repleace</h2><p id="b501ca4e-53c9-4419-8af0-6fcc4be9ccbd" class="">El método replace ( ) busca en una cadena un valor especificado, o una expresión regular, y devuelve una nueva cadena donde se reemplazan los valores especificados.</p><pre id="d60834e3-1c22-4406-86e0-dd14d2b4d354" class="code code-wrap"><code>let bestFriend = &quot;Mi mejor amistad es Odett&quot;;
+bestFriend.replace(&quot;Odett&quot;,&quot;Elena&quot;); //Busca &quot;Odett&quot; y si está lo remplaza por &quot;Elena&quot;.
+
+//Resultado: &quot;Mi mejor amistad es Elena&quot;.</code></pre><hr id="7f38b9f5-1bb1-43e5-aa24-f0adc41af420"/><h2 id="51d38eb4-405f-45ea-8e88-4e22d9efefcc" class="block-color-yellow">Repeat</h2><p id="e0474a34-a9a4-4544-a145-23742c559104" class="">Repite la cadena las veces que se le indique.</p><pre id="35624279-654a-4210-a0ad-7b1da1b55422" class="code code-wrap"><code>let gato = &quot;gato &quot;;
+gato.repeat(5000);</code></pre><hr id="6e8e6e29-030f-470f-9bb1-34630ff90ef7"/><h2 id="4d5fa353-4630-4551-9497-96b48c485053" class="block-color-yellow">Literales de plantilla</h2><p id="9c4b9bb8-02c6-4142-a44f-b585f846ee75" class="">Las plantillas literales son cadenas literales que habilitan el uso de expresiones incrustadas. Con ellas, es posible utilizar cadenas de caracteres de más de una línea, y funcionalidades de interpolación de cadenas de caracteres.</p><pre id="0b2f577b-67e0-45d3-8af5-f9f3f20e55b6" class="code code-wrap"><code>let dinero = 7000;
+let costoDelProducto = 5000;
+let userName = &quot;Maria&quot;;
+let pago = dinero - costoDelProducto;
+
+let cuenta = `Hola ${userName} usted compró un producto de ${costoDelProducto} pesos, de los cuales le sobraron ${pago} pesos`;
+
+console.log(cuenta);
+
+// El ${} es para agragar una variable o agragar datos como operaciones de numeros.
+// Para hacer esto se debe agregar los  `` .
+
+</code></pre><hr id="e59c2970-2f2e-4363-a0f2-832e55a7b1c8"/><h2 id="7a341eb3-8342-4d71-a9b6-792ccbc70885" class="block-color-yellow">Undefined &amp; Null</h2><p id="0cb914eb-c713-4bd0-838f-9ea0f8d4d083" class="">Undefined significa que no está definido</p><p id="2c30648b-6dbc-4b04-b95f-4707017d6a02" class="">Null es la falta intencionada y esto es algo que le asignamos</p><p id="f6c06ff5-e816-4fcf-a951-32da06019c9e" class="">Es básicamente indefinido vs nada.</p><hr id="4ef8c595-74ed-47dd-a37b-3d87759d0baf"/><h2 id="b8ee582c-bc8b-45c8-87c0-159accec4efc" class="block-color-yellow">Random Numbers &amp; The Math Object</h2><p id="0d8d66f2-25fb-4e1a-bb03-3844a3adec37" class="">Math.floor: Quita los decimales y deja el resultado en números enteros.</p><pre id="969ddada-8369-4805-9029-f0fb7dd71e4d" class="code code-wrap"><code>Math.floor(88.03); //Resultado: 88
+Math.floor(88.95); //Resultado: 88</code></pre><p id="419f711d-2f6f-4823-b271-0c8653244b66" class="">Math.ceil: Quita los decimales y deja el resultado en números enteros pero un dígito más arriba.</p><pre id="50766e5e-c046-40ed-837b-55a0f61b1bbb" class="code code-wrap"><code>Math.ceil(88.03); //Resultado: 89</code></pre><p id="df0027aa-163d-45ea-84ec-57168f242b25" class="">Math.random: Genera un número aleatorio entre 0 y 1.</p><pre id="d77dc8e8-8a8d-48d6-8120-50ae37b0a533" class="code code-wrap"><code>Math.random(); //Resultado: 0.9377222483602989</code></pre><p id="a541f403-c7d6-449d-a6ef-9412f87098d6" class="">Podemos generar números aleatorios del 1 al 100 por ejemplo, sin decimales con floor y random</p><pre id="8d7f0a33-4312-44fc-b07e-a3168c241923" class="code code-wrap"><code>Math.floor(Math.random() * 100 + 1); //Resultado 27</code></pre><p id="d10e0a53-38c3-490e-9c16-fe060b3cd7ef" class="">
+</p></div></article></body></html>

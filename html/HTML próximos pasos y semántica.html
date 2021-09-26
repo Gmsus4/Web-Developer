@@ -1,0 +1,720 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>HTML: próximos pasos y semántica.</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="39115690-d8ec-4b68-9bd4-085e34f0bef2" class="page sans"><header><img class="page-cover-image" src="https://images.pexels.com/photos/1476880/pexels-photo-1476880.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" style="object-position:center 25.249999999999993%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🧐</span></div><h1 class="page-title">HTML: próximos pasos y semántica.</h1></header><div class="page-body"><hr id="b1902b83-02df-499e-a818-112cb8bd3768"/><h2 id="a6cc652e-2670-4518-b816-54652a92bc23" class="block-color-orange">¿Qué es exactamente HTML 5?</h2><p id="4fdff1d3-7cb7-496d-a3fb-75601184602e" class="">La última versión estable de HTML, HTML5 convierte a HTML de un simple formato de marcado para estructurar documentos en una plataforma completa de desarrollo de aplicaciones. Entre otras características, HTML5 incluye nuevos elementos y API de JavaScript para mejorar el almacenamiento, la multimedia y el acceso al hardware.</p><hr id="7a66e20c-6352-4616-8588-2ce304a09318"/><h2 id="e1095851-d5b9-460d-9eee-2439846d840f" class="block-color-orange">Elemento Block vs. Inline</h2><p id="8e8995c1-4166-4891-a755-375bb61a39fd" class="">Estos términos se refieren a cómo un elemento determinado encaja con el flujo de contenido de un documento.</p><figure id="a7e3d578-7159-438b-9aa0-d010c1a9ef65" class="image"><a href="http://javadesde0.com/wp-content/uploads/1_AFeOAqXNJJdfYAjfXiJ9AQ.jpeg"><img style="width:432px" src="http://javadesde0.com/wp-content/uploads/1_AFeOAqXNJJdfYAjfXiJ9AQ.jpeg"/></a></figure><hr id="308e1dac-76c1-4a18-868f-a0babe41f0b0"/><h2 id="37c50000-96b4-48fb-b999-44e869c0f373" class="block-color-orange">Divs</h2><p id="b28848c8-3595-42b5-9dd1-b9ed7e842864" class="">El div es solo un contenedor genérico para contener cosas o para agrupar elementos y es un elemento Block.</p><pre id="3f5f4c32-acae-4592-b13f-beeb6bd06e70" class="code code-wrap"><code>&lt;div&gt; &lt;!--Contenedor que agrupa a los elementos hijos. Lo que está dentro de el div--&gt;
+	&lt;p&gt;Esto es un párrafo&lt;/p&gt;
+&lt;/div&gt;</code></pre><hr id="3f4ca11b-3039-4109-b738-f4b7d8dfd409"/><h2 id="73e5a206-79fe-495a-b22b-676c9af60540" class="block-color-orange">Span</h2><p id="06b915af-d55d-4afa-951f-7598c12f02d9" class="">El Span es otro contenedor genérico, pero es un elemento en línea.</p><p id="0909a7bc-e874-4c17-aca6-6aa4196d9b89" class="">Así que envolveríamos esto alrededor de cualquier tipo de texto o contenido que queramos destacar más adelante para diseñar con CSS.</p><pre id="f7decdb2-2493-47ce-a702-55baf53291cd" class="code code-wrap"><code>&lt;p&gt;Esto es un párrafo de color &lt;span&gt; azul &lt;/span&gt; &lt;/p&gt;</code></pre><hr id="ae0b00ce-39ac-4138-84b0-a0476921ee3d"/><h2 id="db06ff93-c4c9-4958-a62a-536ee8c1e2e9" class="block-color-orange">Elementos HR, BR, Sup &amp; Sub</h2><p id="6e068a12-1f97-483f-b244-1064bd23c4ca" class="block-color-orange"><strong>El HR</strong></p><p id="837859dd-ce62-44af-ba25-77e38a986fee" class="">El elemento <code>&lt;hr&gt;</code> es como un divisor de pantalla, esto podría representar un cambio de escenario en una historia o un cambio de tema. </p><figure id="089d9129-6c6b-41e3-8d20-a56afadd1372"><div class="source"><a href="https://codepen.io/gmsus4/pen/RwgYgbo">https://codepen.io/gmsus4/pen/RwgYgbo</a></div></figure><hr id="ed6fe532-7a9b-4f21-92e8-cc24489c9635"/><p id="c4a27a0b-8263-4839-a5db-fe1cae8471a2" class="block-color-orange"><strong>El BR</strong></p><p id="b0bc4431-500d-4ebe-a443-ac448e4273d2" class="">El elemento <code>&lt;br&gt;</code> es un salto de línea.</p><hr id="0c44799e-0861-45b4-8651-dc23cbdca606"/><p id="8aed24cb-db41-470c-8b11-a517ac0b1278" class="block-color-orange"><strong>El Sup &amp; Sub</strong></p><p id="77cb3265-df25-4583-9c1a-cdd95b534582" class=""><code>&lt;sub&gt;</code> <code>&lt;sup&gt;</code></p><figure id="23900e22-225e-4478-8240-505283b96a7b"><div class="source"><a href="https://codepen.io/gmsus4/pen/RwgYgGV">https://codepen.io/gmsus4/pen/RwgYgGV</a></div></figure><hr id="34a8656f-b447-42b3-9f4f-11566851ba8b"/><h2 id="6e45d7a0-f91b-421c-86d2-8f415d118d0f" class="block-color-orange">Códigos de Entidad</h2><figure id="3a79c62f-e826-46f7-b959-1cf76ac68d45"><div class="source"><a href="https://dev.w3.org/html5/html-author/charref">https://dev.w3.org/html5/html-author/charref</a></div></figure><hr id="43cb6b49-45c5-41b1-8916-367a0c23f51e"/><h2 id="5c717967-eb36-4e6d-8a36-023344164ba0" class="block-color-orange">Marcado Semántico</h2><p id="56708632-faeb-4065-98f3-2d92fb34acc5" class="">El marcado semántico es un marcado significativo o marcado que se relaciona o pertenece al significado del contenido de ese elemento.</p><figure id="b5e45a39-6ad0-4bdf-9235-79e7d58e11ec" class="image"><a href="https://www.w3schools.com/html/img_sem_elements.gif"><img style="width:240px" src="https://www.w3schools.com/html/img_sem_elements.gif"/></a></figure><hr id="322da2b6-904e-4f45-a3df-fe9f117d3eab"/><h2 id="a60228e4-5e27-4f6e-a163-8f09d58d9ee0" class="block-color-orange">Elementos Semánticos</h2><p id="58f7f855-83b5-4102-9dad-b9687714237f" class="">
+</p><blockquote id="b390c8d0-bc8e-41de-99b0-59457fb19feb" class="block-color-orange_background"><strong>Main</strong></blockquote><p id="3ca5ce92-b680-4601-a553-b7e9d4625c84" class="">La etiqueta <code>&lt;main&gt;</code> especifica el contenido principal de un documento.</p><p id="c3437e7b-29d3-4dfc-9e61-0be12299fe09" class="">El contenido dentro del elemento &lt;main&gt; debe ser exclusivo del documento. No debe contener ningún contenido que se repita en documentos como barras laterales, enlaces de navegación, información de derechos de autor, logotipos del sitio y formularios de búsqueda.</p><p id="636d374a-4476-4ede-bd01-c78c67f30593" class=""><strong>Ejemplo en código:</strong></p><pre id="061c4176-fb44-43ff-a7ee-3d486972b2ab" class="code code-wrap"><code>&lt;main&gt;
+  &lt;h1&gt;Most Popular Browsers&lt;/h1&gt;
+  &lt;p&gt;Chrome, Firefox, and Edge are the most used browsers today.&lt;/p&gt;
+
+  &lt;article&gt;
+    &lt;h2&gt;Google Chrome&lt;/h2&gt;
+    &lt;p&gt;Google Chrome is a web browser developed by Google, released in 2008. Chrome is the world&#x27;s most popular web browser today!&lt;/p&gt;
+  &lt;/article&gt;
+
+  &lt;article&gt;
+    &lt;h2&gt;Mozilla Firefox&lt;/h2&gt;
+    &lt;p&gt;Mozilla Firefox is an open-source web browser developed by Mozilla. Firefox has been the second most popular web browser since January, 2018.&lt;/p&gt;
+  &lt;/article&gt;
+
+  &lt;article&gt;
+    &lt;h2&gt;Microsoft Edge&lt;/h2&gt;
+    &lt;p&gt;Microsoft Edge is a web browser developed by Microsoft, released in 2015. Microsoft Edge replaced Internet Explorer.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;</code></pre><hr id="a17bbf1c-4278-48ed-8dd9-eeff3ba7eaf9"/><p id="f8dfa632-870e-4fc7-bf68-c05f0c22c5e4" class="">
+</p><blockquote id="db4572ff-591b-40ac-a7b4-5fe392a29761" class="block-color-orange_background"><strong>Article</strong></blockquote><p id="f1ecdb63-66fd-4b2d-929a-01193a03b9f3" class="">El elemento <code>&lt;article&gt;</code> especifica contenido autónomo e independiente.</p><p id="81527007-5773-4700-ac25-2edd2ee430f5" class="">Un artículo debe tener sentido por sí solo y debe ser posible distribuirlo independientemente del resto del sitio web.</p><p id="8ae002e3-8ce8-4a54-a316-28f78c3685c1" class="">Ejemplos de dónde se puede utilizar el elemento &lt;article&gt;:</p><ul id="264be009-426d-4f29-bac7-2ff48fbb3ba2" class="bulleted-list"><li style="list-style-type:disc">Publicaciones del foro</li></ul><ul id="45502f05-16d8-4c23-a3ac-419016a8f4b0" class="bulleted-list"><li style="list-style-type:disc">Publicaciones de blog</li></ul><ul id="11732a9c-9b96-4a18-be34-ced5eb35c3da" class="bulleted-list"><li style="list-style-type:disc">Comentarios del usuario</li></ul><ul id="bcab8a77-0691-4a8f-af7a-0bd837240874" class="bulleted-list"><li style="list-style-type:disc">Tarjetas de productos</li></ul><ul id="4be05ae2-3158-483b-8c7a-327db3f9593f" class="bulleted-list"><li style="list-style-type:disc">Artículos del periódico</li></ul><p id="9f928013-3d0b-4981-96a2-4845a75fa992" class=""><strong>Ejemplo en código:</strong></p><pre id="c07d4b0d-c217-4e65-b450-1dbc6830bdaa" class="code code-wrap"><code>&lt;article&gt;
+&lt;h2&gt;Google Chrome&lt;/h2&gt;
+&lt;p&gt;Google Chrome is a web browser developed by Google, released in 2008. Chrome is the world&#x27;s most popular web browser today!&lt;/p&gt;
+&lt;/article&gt;
+
+&lt;article&gt;
+&lt;h2&gt;Mozilla Firefox&lt;/h2&gt;
+&lt;p&gt;Mozilla Firefox is an open-source web browser developed by Mozilla. Firefox has been the second most popular web browser since January, 2018.&lt;/p&gt;
+&lt;/article&gt;
+
+&lt;article&gt;
+&lt;h2&gt;Microsoft Edge&lt;/h2&gt;
+&lt;p&gt;Microsoft Edge is a web browser developed by Microsoft, released in 2015. Microsoft Edge replaced Internet Explorer.&lt;/p&gt;
+&lt;/article&gt;</code></pre><hr id="91baed9d-bbcf-4b47-847a-3bd6c76d895e"/><p id="049feeed-285a-4f97-aaff-9acae748dbd2" class="">
+</p><blockquote id="e8f767af-6f6e-4dab-a035-1581d20e9c00" class="block-color-orange_background"><strong>Section</strong></blockquote><p id="3a57e8db-bbcf-497e-9f81-b598b687475c" class="">El elemento <code>&lt;section&gt;</code> define la sección en un documento.</p><p id="acfa87c3-4d9b-43e5-9116-01458644debc" class="">Según la documentación HTML del W3C: &quot;Una sección es una agrupación temática de contenido, normalmente con un encabezado&quot;.</p><p id="271542d0-2f36-46af-a451-d3abf591701a" class="">Ejemplos de dónde se puede utilizar un elemento &lt;section&gt;:</p><ul id="11591287-31b8-4218-afc0-43959e5a47bf" class="bulleted-list"><li style="list-style-type:disc">Capítulos</li></ul><ul id="7927a39d-ee5c-4903-aa5c-6c85b4a3652d" class="bulleted-list"><li style="list-style-type:disc">Introducción</li></ul><ul id="eea9275c-1c5d-4772-bfa5-21b1770c1def" class="bulleted-list"><li style="list-style-type:disc">Artículos de noticias</li></ul><ul id="39be6e4f-ef19-4a20-8ab2-355e541ea0ac" class="bulleted-list"><li style="list-style-type:disc">Información del contacto</li></ul><p id="26fd9bc7-872b-4ba8-bbc2-ed5489906a6f" class=""><strong>Ejemplo en código:</strong></p><pre id="a9e1fb68-6222-438a-8451-aa8c3d252f41" class="code code-wrap"><code>&lt;section&gt;
+&lt;h1&gt;WWF&lt;/h1&gt;
+&lt;p&gt;The World Wide Fund for Nature (WWF) is an international organization working on issues regarding the conservation, research and restoration of the environment, formerly named the World Wildlife Fund. WWF was founded in 1961.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;h1&gt;WWF&#x27;s Panda symbol&lt;/h1&gt;
+&lt;p&gt;The Panda has become the symbol of WWF. The well-known panda logo of WWF originated from a panda named Chi Chi that was transferred from the Beijing Zoo to the London Zoo in the same year of the establishment of WWF.&lt;/p&gt;
+&lt;/section&gt;</code></pre><p id="60d47ba8-50ed-4c24-82f7-e6e43a1c27b3" class="">¿Podemos usar las definiciones para decidir cómo anidar esos elementos? ¡No podemos!</p><p id="079a211b-0932-4e02-896c-8b620eba2b84" class="">Por lo tanto, encontrará páginas HTML con elementos &lt;section&gt; que contienen elementos &lt;article&gt; y elementos &lt;article&gt; que contienen elementos &lt;section&gt;</p><hr id="21bd011f-414b-48cf-bfa7-64ea656af7c3"/><p id="e6f4d8bf-5558-44bc-886a-22783e3bdf62" class="">
+</p><blockquote id="e9f269c9-90fd-4b9f-a2c2-e83f17889d6d" class="block-color-orange_background"><strong>Header</strong></blockquote><p id="8f232f81-0a5b-4256-969b-b2c9000d3f1c" class="">El elemento <code>&lt;header&gt;</code> representa un contenedor de contenido introductorio o un conjunto de enlaces de navegación.</p><p id="fbe06de6-0f5c-43ef-b967-1344b4964302" class="">Un elemento &lt;header&gt; normalmente contiene:</p><ul id="a052f1b8-0562-404e-b639-7f6d7b796116" class="bulleted-list"><li style="list-style-type:disc">Uno o más elementos de encabezado (&lt;h1&gt; - &lt;h6&gt;)</li></ul><ul id="1cb8eeb9-79cc-4286-852f-362654b96822" class="bulleted-list"><li style="list-style-type:disc">Logo o icono</li></ul><ul id="31d23333-b26c-4608-8c7e-c8d9580ebd1c" class="bulleted-list"><li style="list-style-type:disc">Información de autoría</li></ul><p id="d29b4b3e-8319-48af-b4d8-1d9e3a5e386e" class="">Nota: Puede tener varios elementos &lt;header&gt; en un documento HTML. Sin embargo, &lt;header&gt; no se puede colocar dentro de un &lt;footer&gt;, &lt;address&gt; u otro elemento &lt;header&gt;.</p><p id="1cbff212-5a9f-44d6-a04f-34cf545dae1e" class=""><strong>Ejemplo en código:</strong></p><pre id="214903fe-2144-4de3-a9df-b78524fac25f" class="code code-wrap"><code>&lt;article&gt;
+  &lt;header&gt;
+    &lt;h1&gt;What Does WWF Do?&lt;/h1&gt;
+    &lt;p&gt;WWF&#x27;s mission:&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;p&gt;WWF&#x27;s mission is to stop the degradation of our planet&#x27;s natural environment,
+  and build a future in which humans live in harmony with nature.&lt;/p&gt;
+&lt;/article&gt;</code></pre><hr id="64fb2eb6-0232-48cf-be58-f94e32b43c19"/><p id="9353d2cf-9c60-49b0-b886-79d4a0dc9f1a" class="">
+</p><blockquote id="be1fea75-b717-4a6b-a721-c86bf33e11e7" class="block-color-orange_background"><strong>Footer</strong></blockquote><p id="20846e9f-de93-46f3-b174-bc0078601c6d" class="">El elemento <code>&lt;footer&gt;</code> define un pie de página para un documento o sección.</p><p id="fc61a48b-f22e-42e2-af5d-f172e7b0988e" class="">Un elemento &lt;footer&gt; normalmente contiene:</p><ul id="5f502ec2-f8d3-40ea-a932-2926738fe29d" class="bulleted-list"><li style="list-style-type:disc">Información de autoría</li></ul><ul id="9a00ad15-8b3c-46a4-847d-927b105b5988" class="bulleted-list"><li style="list-style-type:disc">Informacion registrada</li></ul><ul id="d94ad12f-d54e-43a3-8e86-b04d6134425e" class="bulleted-list"><li style="list-style-type:disc">Información del contacto</li></ul><ul id="59efe8cd-ff5c-4421-b71d-9637aaec5a01" class="bulleted-list"><li style="list-style-type:disc">Mapa del sitio</li></ul><ul id="2b0f118d-9544-4c52-9240-88c775f5ab9d" class="bulleted-list"><li style="list-style-type:disc">Volver a los enlaces superiores</li></ul><ul id="a2579419-e2ef-4823-b2f3-2864896f878e" class="bulleted-list"><li style="list-style-type:disc">Documentos relacionados</li></ul><p id="69a3c312-595d-4def-94db-57161e799e35" class="">Puede tener varios elementos &lt;footer&gt; en un documento.</p><p id="c2eee256-e5a2-4f89-b7ab-cdb702ef97e4" class=""><strong>Ejemplo en código:</strong></p><pre id="4d5aa33f-6829-43e4-ae40-ffb05a40bf81" class="code code-wrap"><code>&lt;footer&gt;
+  &lt;p&gt;Author: Hege Refsnes&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;mailto:hege@example.com&quot;&gt;hege@example.com&lt;/a&gt;&lt;/p&gt;
+&lt;/footer&gt;</code></pre><hr id="da9003af-66c1-4e9e-b1b1-2840d37e5fc7"/><p id="6785ef61-7d7b-4368-ae54-817a67213aa5" class="">
+</p><blockquote id="ec8c8c6a-3398-465e-b15f-ce6df330d28c" class="block-color-orange_background"><strong>Nav</strong></blockquote><p id="7bb3ad9a-8815-4025-a292-a2f186eeef2e" class="">El elemento <code>&lt;nav&gt;</code> define un conjunto de enlaces de navegación.</p><p id="40980b12-5d25-413f-aa6b-e82729618c29" class=""><strong>Ejemplo en código:</strong></p><pre id="09b21e95-91e7-401d-a1c8-51f83b6c2218" class="code code-wrap"><code>&lt;nav&gt;
+  &lt;a href=&quot;/html/&quot;&gt;HTML&lt;/a&gt; |
+  &lt;a href=&quot;/css/&quot;&gt;CSS&lt;/a&gt; |
+  &lt;a href=&quot;/js/&quot;&gt;JavaScript&lt;/a&gt; |
+  &lt;a href=&quot;/jquery/&quot;&gt;jQuery&lt;/a&gt;
+&lt;/nav&gt;</code></pre><hr id="53b6b989-ec22-4873-93d8-9629ad1a6deb"/><p id="f6f9657a-a3b1-49a4-9e72-c516d7521a5e" class="">
+</p><blockquote id="d5577720-26c8-4579-bbed-bd2553639399" class="block-color-orange_background"><strong>Aside</strong></blockquote><p id="1e352142-76f0-47b9-8308-2ef0cefbf1ad" class="">El elemento <code>&lt;aside&gt;</code> define algún contenido además del contenido en el que está colocado (como una barra lateral).</p><p id="4db4afee-4db7-4648-932e-1c2990ef6dbc" class="">El contenido &lt;aside&gt; debe estar relacionado indirectamente con el contenido circundante.</p><p id="af5b34e3-54b0-4d81-971d-b64737143e4d" class=""><strong>Ejemplo en código:</strong></p><pre id="fee81f3b-1ed3-4659-bf7e-ac072b8f764a" class="code code-wrap"><code>&lt;p&gt;My family and I visited The Epcot center this summer. The weather was nice, and Epcot was amazing! I had a great summer together with my family!&lt;/p&gt;
+
+&lt;aside&gt;
+&lt;h4&gt;Epcot Center&lt;/h4&gt;
+&lt;p&gt;Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.&lt;/p&gt;
+&lt;/aside&gt;</code></pre><hr id="858bb530-8ec7-4a5f-9542-91ff9e7082f1"/><p id="29156382-a05f-4df7-a687-a2a4f6f157ad" class="">
+</p><blockquote id="f4c1314f-e22e-45aa-847d-b7f3764db3fe" class="block-color-orange_background"><strong>Figure y Figcaption</strong></blockquote><p id="d5f8438c-63dd-4572-95fb-9069e7e8588b" class="">La etiqueta <code>&lt;figure&gt;</code> especifica contenido autónomo, como ilustraciones, diagramas, fotos, listas de códigos, etc.</p><p id="9ba7ca5f-87ad-4741-97cb-f22e5814d3c0" class="">La etiqueta <code>&lt;figcaption&gt;</code> define un título para un elemento &lt;figure&gt;. El elemento &lt;figcaption&gt; se puede colocar como el primer o último hijo de un elemento &lt;figure&gt;.</p><p id="ec12c79e-ba3b-4e01-bf08-9ab6547d99b9" class="">El elemento <code>&lt;img&gt;</code> define la imagen / ilustración real.</p><p id="e298a138-dc92-4a0c-81da-45ab0f675885" class=""><strong>Ejemplo en código:</strong></p><pre id="4db16850-39e2-4b29-b7c1-fd6836de6003" class="code code-wrap"><code>&lt;figure&gt;
+  &lt;img src=&quot;pic_trulli.jpg&quot; alt=&quot;Trulli&quot;&gt;
+  &lt;figcaption&gt;Fig1. - Trulli, Puglia, Italy.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre><hr id="a12ba772-d472-4812-b297-437237934cec"/><p id="f3686efb-f5cd-4ba6-9d57-1e236669e503" class="">
+</p><blockquote id="84654899-050b-41cd-b8a5-d79e78e0f425" class="block-color-orange_background"><strong>Details</strong></blockquote><p id="87a478fb-4f0a-4a1d-be37-1b41bdcd86bb" class="">La etiqueta <code>&lt;details&gt;</code> especifica detalles adicionales que el usuario puede abrir y cerrar a pedido.</p><p id="c53aaf24-f020-4f16-ab29-de6c5a3c3210" class="">La etiqueta &lt;details&gt; se usa a menudo para crear un widget interactivo que el usuario puede abrir y cerrar. De forma predeterminada, el widget está cerrado. Cuando está abierto, se expande y muestra el contenido que contiene.</p><p id="94715e01-d2ff-4834-a53e-75f1edaa5163" class="">Se puede colocar cualquier tipo de contenido dentro de la etiqueta &lt;details&gt;.</p><p id="82c6f3d2-d707-4d5d-b4f0-374a4d8f49b5" class=""><strong>Ejemplo en código:</strong></p><pre id="ab36c647-c005-4a01-a9fa-ebe908ca8ccb" class="code code-wrap"><code>&lt;details&gt;
+  &lt;summary&gt;Epcot Center&lt;/summary&gt;
+  &lt;p&gt;Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.&lt;/p&gt;
+&lt;/details&gt;</code></pre><hr id="e2394bee-0aa5-4a76-a719-679f5538b87f"/><p id="65cdc38e-1acb-46d8-83a7-5ccf780e5b2c" class="">
+</p><blockquote id="f2457843-aee3-41f2-80fa-ed669d30bcaf" class="block-color-orange_background"><strong>Summary</strong></blockquote><p id="8cc1d26c-c945-43ac-83d1-7862ca91f893" class="">La etiqueta <code>&lt;summary&gt;</code> define un encabezado visible para el elemento &lt;details&gt;. Se puede hacer clic en el encabezado para ver / ocultar los detalles.</p><p id="08febfab-22a0-45d1-a1bf-56af3db55ace" class="">Nota: El elemento &lt;summary&gt; debe ser el primer elemento hijo del elemento &lt;details&gt;.</p><p id="31d57969-db25-4bcd-ab42-04b270f8fecc" class=""><strong>Ejemplo en código:</strong></p><pre id="d2137c6e-ac85-446c-9f12-d1b2e3044833" class="code code-wrap"><code>&lt;details&gt;
+  &lt;summary&gt;Epcot Center&lt;/summary&gt;
+  &lt;p&gt;Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.&lt;/p&gt;
+&lt;/details&gt;</code></pre><hr id="24b16ee4-694e-4693-9bcd-0781e0fddf57"/><p id="664dcf24-ceba-4604-8b7a-97dcfc62e17c" class="">
+</p><blockquote id="b87a133d-20b9-48d9-83fc-760a5d39bf0c" class="block-color-orange_background"><strong>Mark</strong></blockquote><p id="35221540-a945-4d63-9e16-ee10d492b51d" class="">La etiqueta <code>&lt;mark&gt;</code> define el texto que se debe marcar o resaltar.</p><p id="e99371ae-d0c5-46fd-8305-91cd02c66b11" class=""><strong>Ejemplo en código:</strong></p><pre id="1e4a4b34-e4dc-4c20-8541-9e2fb474886b" class="code code-wrap"><code>&lt;p&gt;Do not forget to buy &lt;mark&gt;milk&lt;/mark&gt; today.&lt;/p&gt;</code></pre><hr id="27676fee-7af4-4ab3-8489-fcd0e3b89431"/><p id="23fd3289-7300-4774-8155-98b6decb249e" class="">
+</p><blockquote id="c9490100-98db-4c23-b550-88120c59fc61" class="block-color-orange_background"><strong>Time</strong></blockquote><p id="ab2ba1a2-ddce-42e0-9c7b-cc3aff5dfcb5" class="">La etiqueta <code>&lt;time&gt;</code> define una hora específica (o fecha y hora).</p><p id="b798360a-3d3f-4984-8ee8-2092c08e856b" class="">El atributo <code>&lt;datetime&gt;</code> se utiliza para traducir la hora a un formato legible por máquina para que los navegadores puedan ofrecer agregar recordatorios de fecha a través del calendario del usuario, y los motores de búsqueda pueden producir resultados de búsqueda más inteligentes.</p><p id="b2837d6b-baaa-4228-a002-301e1c78ee98" class=""><strong>Ejemplo en código:</strong></p><pre id="eea4990c-4f46-459e-bb51-3650415ea790" class="code code-wrap"><code>&lt;p&gt;Open from &lt;time&gt;10:00&lt;/time&gt; to &lt;time&gt;21:00&lt;/time&gt; every weekday.&lt;/p&gt;
+
+&lt;p&gt;I have a date on &lt;time datetime=&quot;2008-02-14 20:00&quot;&gt;Valentines day&lt;/time&gt;.&lt;/p&gt;</code></pre></div></article></body></html>

@@ -1,0 +1,673 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>HTML: lo esencial</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2c5e90b9-9f1f-43b3-b7ec-c09143fdecdb" class="page sans"><header><img class="page-cover-image" src="https://images.pexels.com/photos/1606328/pexels-photo-1606328.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" style="object-position:center 35.9%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🥱</span></div><h1 class="page-title">HTML: lo esencial</h1></header><div class="page-body"><hr id="66a7c076-b48f-4725-9446-c660ab0b85df"/><hr id="7322a8b0-995e-4569-ba6a-d679a0451b8f"/><h2 id="5ca20959-8933-4bf1-b207-a085e3a22dfb" class="block-color-orange">¿Qué es HTML?</h2><p id="cbea53ca-e3c4-4d80-9717-895c97b9ffd4" class=""><strong>HTML</strong> (Lenguaje de Marcas de Hipertexto, del inglés <em>HyperText Markup Language</em>) es el componente más básico de la Web. Define el significado y la estructura del contenido web. Además de HTML, generalmente se utilizan otras tecnologías para describir la apariencia/presentación de una página web (<a href="https://developer.mozilla.org/es/docs/Web/CSS">CSS</a>) o la funcionalidad/comportamiento (<a href="https://developer.mozilla.org/es/docs/Web/JavaScript">JavaScript</a>).</p><p id="b6c6ff58-c445-4530-ac39-9d5ce53c881e" class="">&quot;Hipertexto&quot; hace referencia a los enlaces que conectan páginas web entre sí, ya sea dentro de un único sitio web o entre sitios web. Los enlaces son un aspecto fundamental de la Web. Al subir contenido a Internet y vincularlo a las páginas creadas por otras personas, te conviertes en un participante activo en la «<em>World Wide Web</em>» (Red Informática Mundial).</p><hr id="a3f024eb-6f0b-4855-8ab4-818e6bb27432"/><h2 id="e62285ed-173b-431a-9c6a-515c0ec55422" class="block-color-orange">Referencia de elementos HTML</h2><p id="1016c533-8e8c-40cb-8c49-e2f12eb6d7b8" class="">Para que el navegador sepa que hacer, hay que indicarle los elementos mediante etiquetas.</p><pre id="115919d9-2e83-487f-9a10-175922129de9" class="code"><code>&lt;h1&gt; HTML para principiantes &lt;/h1&gt; &lt;!--Alrededor de los h1 estan las etiquetas,
+ una etiqueta de apertura y una etiqueta de cierre--&gt;</code></pre><figure id="d2c4aa21-da5a-471b-a215-d2b5a001b0e6" class="image"><a href="https://i1.wp.com/webdisenia.com/wp-content/uploads/2015/03/02.jpg"><img style="width:576px" src="https://i1.wp.com/webdisenia.com/wp-content/uploads/2015/03/02.jpg"/></a></figure><h2 id="09072be4-0d87-4afb-a484-8d9f5f9f6827" class="block-color-orange">Encabezados</h2><p id="0192d885-a35e-4672-859f-775fd91a48e8" class="">Hay 6 tipos de encabezados en una página web, en orden del más importante al menos importante.</p><p id="1e3f1f82-1caa-4b6d-90fb-3763dbdbe501" class="">El h1 significa el encabezado de una página web, done h es el encabezado y 1 es el valor del encabezado, siendo 1 el más importante.</p><pre id="a3c9c1b0-18f0-457f-bf4c-2e50b75a0f8e" class="code"><code>&lt;h1&gt;This is heading 1&lt;/h1&gt;
+&lt;h2&gt;This is heading 2&lt;/h2&gt;
+&lt;h3&gt;This is heading 3&lt;/h3&gt;
+&lt;h4&gt;This is heading 4&lt;/h4&gt;
+&lt;h5&gt;This is heading 5&lt;/h5&gt;
+&lt;h6&gt;This is heading 6&lt;/h6&gt;</code></pre><figure id="aa25e40d-9fc3-46fc-ba70-253f9d7594fb"><div class="source"><a href="https://codepen.io/gmsus4/pen/QWgVpKW">https://codepen.io/gmsus4/pen/QWgVpKW</a></div></figure><p id="b821721d-5991-42e5-b56c-fdad8bb1937c" class="">Los encabezados tienen sus propios estilos, lo cual el h1 tiende a ser el más grande e importante de los encabezados, asi que, el h6 sería el menos importante y más pequeño en el estilo.</p><p id="b07f6501-babc-4311-9512-aa9c77c8cfc9" class="">
+</p><h2 id="826e2c17-86f7-4be0-85c2-f6193c324e0e" class="block-color-orange">Párrafos</h2><p id="3e775044-bc06-4ee5-8186-0e6c39e16fa1" class="">Para poner un párrafo en HTML es de la siguiente manera <code>&lt;p&gt;</code>Esto es un párrafo<code>&lt;/p&gt;</code></p><hr id="b9416118-9315-46a3-a6f9-dcf4b33d97d8"/><h2 id="f3bad8fa-862c-49b6-8d28-27d67b764e72" class="block-color-orange">HTML Skeleton</h2><p id="a0c74b69-5b1d-4c20-bfef-e0d0d81a62d3" class="">Es la estructura base de un HTML con ciertas etiquetas importantes para su funcionamiento.</p><pre id="986c9ec4-7e1f-425a-b586-7b53a4311e79" class="code"><code>&lt;!DOCTYPE html&gt; &lt;!--Indica que lo siguiente será interpretado como html--&gt;
+&lt;html lang=&quot;en&quot;&gt; &lt;!--El idioma por defecto de la página--&gt;
+&lt;head&gt; &lt;!--Encabezado de la página (No es visual en el navegador--&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;!--Permite agregar caracteres y que los interprete--&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+		&lt;!--Para que sea compatible con distintos navegadores--&gt;
+
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+		&lt;!--Para que la página se pueda adaptar a distintos dispositivos--&gt;
+    &lt;title&gt;Document&lt;/title&gt; &lt;!--Título del documento--&gt;
+&lt;/head&gt; &lt;!--Cierre de la etiqueta--&gt;
+&lt;body&gt; &lt;!--El cuerpo de la página--&gt;
+    
+&lt;/body&gt; &lt;!--Cierre de la etiqueta--&gt;
+&lt;/html&gt; &lt;!--Cierre de la etiqueta--&gt;</code></pre><hr id="d10b45ef-8a43-4569-8ef2-9db054e007de"/><h2 id="d655942e-4a3f-4b9a-bcd5-6c1779be38bc" class="block-color-orange">Lista de elementos</h2><pre id="e4d549b2-525d-450a-95d1-e0a4a32e9866" class="code code-wrap"><code>&lt;ul&gt;&lt;/ul&gt; &lt;!--Lista de elementos no ordenada--&gt;
+&lt;ol&gt;&lt;/ol&gt; &lt;!--Lista de elementos ordenada--&gt;
+
+&lt;ul&gt; &lt;!--Tanto como ol y ul, solo crean la lista, el contenido de ella debe estar dentro de la etiqueta, con otra etiqueta, la &lt;li&gt;--&gt;
+
+	&lt;li&gt;Manzana&lt;/li&gt; &lt;!--Define los items de la lista--&gt;
+	&lt;li&gt;Mandarina&lt;/li&gt;
+	&lt;li&gt;Mango&lt;/li&gt;
+	&lt;li&gt;Melón&lt;/li&gt;
+
+&lt;/ul&gt;</code></pre><figure id="f4cad4fc-3d64-4b1e-9c61-868c3b79635f"><div class="source"><a href="https://codepen.io/gmsus4/pen/VwWGpYQ">https://codepen.io/gmsus4/pen/VwWGpYQ</a></div></figure><hr id="0b9937b3-ef73-4da0-8cb0-6162e69830e6"/><h2 id="9d3810e8-a91d-4522-ab3c-5b3695a072b1" class="block-color-orange">Enlaces</h2><p id="1d645efc-5a24-42bc-95f6-274af8f50b76" class="">Crea un enlace para redireccionar a otra página o a otro lugar de la misma página.</p><p id="e9afaf3f-08dc-42a1-a50e-d89dd8ca0f40" class="">Mediante la etiqueta <code>&lt;a&gt;</code> </p><pre id="d22dfc62-11d7-4844-95df-7a7d4d5e479c" class="code code-wrap"><code>&lt;a href=&quot;https://www.google.com&quot;&gt;Ir a Google&lt;/a&gt;
+ &lt;!--El href significa la dirreción a la que debe ir ese enlace--&gt;</code></pre><hr id="f341a54c-bbf1-433d-b8be-3928bf41248a"/><h2 id="5ba3e041-3f5d-428e-bffb-1922ac9bd9a9" class="block-color-orange">Imágenes</h2><p id="f12ad414-ab3b-470f-a286-8a1cef647871" class="">Agrega imágenes a nuestro sitio web.</p><p id="34341fbe-65b4-462e-bb94-f1a247cf3f07" class="">Mediante la etiqueta <code>&lt;img&gt;</code></p><pre id="4a43bd5b-8172-4865-bced-2fa486f905ba" class="code code-wrap"><code>&lt;img src=&quot;Firulais.jpg&quot; alt=&quot;Mi perrito Firulais&quot;&gt;
+	&lt;!--El src es la ubicación donde se encuentra la imágen--&gt;
+	&lt;!--El alt es una pequeña descripción de la imágen, en el caso de que no cargara la 
+	imágen por alguna razón --&gt;</code></pre><hr id="166d7cab-5d1a-4526-9609-4ff8e9b99435"/><h2 id="34a1c9df-78ae-403c-8c7f-33b7cea42b40" class="block-color-orange">Videos</h2><p id="05c319ec-7475-4414-87e5-8f4b18281d4f" class="">Agrega videos a nuestro sitio web.</p><p id="9815487d-d7e8-4945-aadb-1443c0e3a4d8" class="">Medante la etiqueta <code>&lt;video&gt;</code></p><pre id="14ca5d94-a0a3-49a8-ae71-66143fe8279e" class="code code-wrap"><code>&lt;video src=&quot;rutavideo.mp4&quot; controls=&quot;&quot;&gt;&lt;/video&gt;</code></pre><hr id="ea379702-ce60-4212-8199-c63564b20eb4"/><h2 id="184e532d-018c-4a5e-be9c-4919ead5f974" class="block-color-orange">Audios</h2><p id="5ff06ca1-091b-4d38-aaf6-660a15f3b82e" class="">Agrega audio a nuestro sitio web.</p><p id="c5dba104-049f-4279-8ad1-64557e472e4e" class="">Mediante la etiqueta <code>&lt;audio&gt;</code></p><pre id="08af99e2-1f97-4f2c-98c0-59fd3038a42e" class="code code-wrap"><code>&lt;audio src=&quot;rutavideo.mp3&quot; controls=&quot;&quot;&gt;&lt;/audio&gt;</code></pre><hr id="5f7e4633-cc9c-4a83-bbe3-af74625285a7"/><h2 id="e3231a5b-a953-46dd-8497-b616cc5a3cca" class="block-color-orange">Comentarios</h2><p id="46383ffd-b93d-4987-9ebf-0fc4656eebbc" class="">En nuestro código, la función de los comentarios es no ser interpretada por el navegador, solo es visual para el desarrollador, pero no tendrá ninguna otra funcionalidad.</p><pre id="7fd2ec31-e0b3-4698-8fe6-fcd43460c4cd" class="code code-wrap"><code>&lt;!--Esto es un comentario--&gt;
+&lt;p&gt; Esto es un párrafo &lt;/p&gt;</code></pre><hr id="276bf1af-a35a-4e09-b78a-c90eb4958dbd"/><h2 id="5f7d87d8-09f0-46da-a36a-6c2771287971" class="block-color-orange">Más sobre los elementos</h2><p id="0a05577b-e1b0-4a89-8c7f-b48c42f599ca" class="">Existen más elementos HTML de los cuales aprender, se verán otros temas próximamente, pero puedes echarle un vistazo a este link: </p><figure id="20e71618-092f-43b0-8707-7c3b5118ad1b"><div class="source"><a href="https://www.w3schools.com/tags/">https://www.w3schools.com/tags/</a></div></figure><p id="1db3c11a-3cbb-4393-98f1-f6cc45b869c5" class="">
+</p></div></article></body></html>

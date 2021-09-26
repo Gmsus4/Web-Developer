@@ -1,0 +1,664 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Bootstrap</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="62b5e113-fd14-49ea-8079-142c6c39abd2" class="page sans"><header><img class="page-cover-image" src="https://explodat.cl/Analytics/wp-content/uploads/2020/07/bootstrap-v5-new-logo.png" style="object-position:center 50.6%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://seocom.agency/wp-content/uploads/2019/02/bootstrap-stack.png"/></div><h1 class="page-title">Bootstrap</h1></header><div class="page-body"><hr id="3b3acddc-d838-4e83-b57f-dbfac258ba9b"/><h2 id="cd18b2f8-9076-4b50-b7a7-ed83a7f15ebc" class="block-color-purple">¿Qué es Bootstrap?</h2><p id="ec6587fd-e8ed-4801-a98d-a7577db082c6" class="">Bootstrap nos ayuda a crear rápidemante sitios web modernos atractivos y receptivos para que no tengamos que escribir con tanto CSS como podríamos.</p><p id="2d7e1ed2-c547-4117-8d5d-f29678b3d828" class="">Consiste en una colección de componentes, diferentes piezas que podemos usar y simplemente usar en nuestra aplicación.</p><hr id="dc58f1f0-01ea-4bb6-8f39-930746dc0275"/><h2 id="8732e93b-6557-4d8a-8a11-baa38e54115f" class="block-color-purple">Container</h2><p id="da6eb4ba-e04b-4852-b80c-da30fe26310c" class="">Los contenedores son un bloque de construcción fundamental de Bootstrap que contienen, rellenan y alinean su contenido dentro de un dispositivo o ventana gráfica determinada.</p><p id="e71f69a2-6f6f-48fc-ad29-195387e0067c" class="">Bootstrap viene con tres contenedores diferentes:</p><ul id="80ec8538-186b-48c9-96b6-7330c4e23652" class="bulleted-list"><li style="list-style-type:disc"><code>.container</code> , Que establece un <code>max-width</code> en cada punto de interrupción de respuesta</li></ul><ul id="99da9f99-0552-4e94-aa78-0340a24906f4" class="bulleted-list"><li style="list-style-type:disc"><code>.container-fluid</code>, que está <code>width: 100%</code> en todos los puntos de interrupción</li></ul><ul id="f05fbc9b-891b-4fa8-acff-121848a02032" class="bulleted-list"><li style="list-style-type:disc"><code>.container-{breakpoint}</code>, que es <code>width: 100%</code> hasta el punto de interrupción especificado</li></ul><hr id="0cb7895d-4f9a-4779-88f1-1c2149038801"/><h2 id="97ff8856-474a-4e4b-be24-bc8ce89cd024" class="block-color-purple">Buttons</h2><p id="d4741763-1e5b-4c64-a916-16fadf301201" class="">Las <code>.btn</code> clases están diseñadas para usarse con el <code>&lt;button&gt;</code> elemento. Sin embargo, también puede usar estas clases en elementos <code>&lt;a&gt;</code> o <code>&lt;input&gt;</code> (aunque algunos navegadores pueden aplicar una representación ligeramente diferente).</p><p id="fc35ed7d-5715-4543-9b62-e69b3f578820" class="">Más sobre Buttons en:</p><figure id="558b1b44-b2c1-45be-8f73-019b2c3048d0"><div class="source"><a href="https://getbootstrap.com/docs/5.1/components/buttons/">https://getbootstrap.com/docs/5.1/components/buttons/</a></div></figure><hr id="097cd643-9091-4ee4-a9b5-211316eea105"/><h2 id="a81e6325-5ab7-4cad-9725-0f9d3529629f" class="block-color-purple">Tipografía y Utilidades</h2><p id="aff121a4-db51-486a-9be3-95cc921fbece" class="">Documentación y ejemplos de tipografía Bootstrap, incluida la configuración global, los encabezados, el texto del cuerpo, las listas y más.</p><figure id="2c56f894-c6e2-415a-b961-b147a15c1bb8"><div class="source"><a href="https://getbootstrap.com/docs/5.1/customize/color/">https://getbootstrap.com/docs/5.1/customize/color/</a></div></figure><figure id="993aa55d-c8a8-4732-a9d5-2780e80f97b3"><div class="source"><a href="https://getbootstrap.com/docs/5.1/content/typography/">https://getbootstrap.com/docs/5.1/content/typography/</a></div></figure><hr id="6ea0c5e7-7fa1-4474-9c80-b4d2b357d1b7"/><h2 id="aac5aa70-0e12-47e8-8b4b-c7b510020c00" class="block-color-purple">Badge</h2><p id="6df1ae56-eb0c-4cf6-a719-a721f8b18c84" class="">Crea un span con estilo.</p><figure id="449041a4-47d0-413c-9f6b-92d57a70b516"><div class="source"><a href="https://getbootstrap.com/docs/5.1/components/badge/">https://getbootstrap.com/docs/5.1/components/badge/</a></div></figure><hr id="a65e6310-0c23-43cc-8a31-eff271901d4c"/><h2 id="cb092a70-48ce-477a-a6ea-48a6d5c26aab" class="block-color-purple">Grupo de botones</h2><p id="eb3a2d40-aac9-4f76-85e1-0921f71ae3c5" class="">Crea un grupo de botones xD</p><figure id="c6f744bc-1932-43d8-9569-f0b19d6a7141"><div class="source"><a href="https://getbootstrap.com/docs/5.1/components/button-group/">https://getbootstrap.com/docs/5.1/components/button-group/</a></div></figure><hr id="5a9e5f78-547f-4f78-a2f8-219b459d7707"/><h2 id="f264d854-9408-472e-bef4-37a65176d0d3" class="block-color-purple">Alerts</h2><p id="70d35100-8e93-429d-b266-0a70ef39dddc" class="">Proporciona algún tipo de retroalimentación al usuario, el objetivo principal, es alertar al usuario sobre algo importante o no tiene por que ser crucial, sino alertar al usuario sobre algo.</p><figure id="4719f19e-4963-4e23-bea4-f15850c9402a"><div class="source"><a href="https://getbootstrap.com/docs/5.1/components/alerts/">https://getbootstrap.com/docs/5.1/components/alerts/</a></div></figure><hr id="9f0f4dce-7686-46b7-8f1f-b4d7fb8bd304"/><h2 id="46be9b15-4ce7-48f4-9523-4d720bef4c71" class="block-color-purple">Grid</h2><p id="bf17b112-5d9f-401d-bb68-c89ea936b5d7" class="">Las columnas tiene por defecto un espacio de 12.</p><p id="8eef7344-d301-4f46-825e-04dda9440fcd" class="">Al poner la clase <code>col</code> crea un espacio de columna adaptable.</p><p id="f7d40a07-0630-4524-b801-e59844fa5cf3" class="">Si tenemos dos columnas en el row, con la clase col, las dos columnas tendrán un ancho del 50% esto porque se adaptan, al igual que si hubiera 10 columnas con la clase col, estas tendrían un ancho del 10%, ambas se adaptarían.</p><p id="c085215c-1ecc-48fd-8545-fbd5a130c0ac" class="">Si al poner la clase col-4 le agregamos un &quot;-n&quot; un guión seguido de un número, esto indicará que esa columna tomará (n) espacios del total que son 12.</p><p id="10010b4c-b93a-4d81-9564-0443886cb305" class="">En este caso tomaría 4 espacios de 12.</p><p id="e7afba53-e2ee-494d-b4ef-a49ce018b7b5" class="">Los <code>row</code> crean filas.</p><pre id="7991ed62-4044-4c43-8cd4-7aa5c9825308" class="code code-wrap"><code>&lt;div class=&quot;container&quot;&gt;
+  &lt;h1&gt;Sistema de Grid&lt;/h1&gt;
+ 
+	&lt;div class=&quot;row&quot;&gt; &lt;!--Crea las Filas--&gt;
+	    &lt;div class=&quot;col-2&quot;&gt;&lt;/div&gt; &lt;!--Crea las columnas--&gt;
+	    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt; &lt;!--Crea las columnas--&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;row&quot;&gt; &lt;!--Crea las Filas--&gt;
+			&lt;div class=&quot;col-2&quot;&gt;&lt;/div&gt; &lt;!--Crea las columnas--&gt;
+			&lt;div class=&quot;col&quot;&gt;&lt;/div&gt; &lt;!--Crea las columnas--&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre><hr id="715a2843-5269-4e2a-93b9-19927074574c"/><h2 id="5cdd4f81-3385-4b89-8104-1ed72477c3b8" class="block-color-purple">Responsive Bootstrap Grids</h2><pre id="95c86592-3543-4006-bc6a-4fbd57a98e42" class="code code-wrap"><code>&lt;div class=&quot;container&quot;&gt;
+  &lt;h1&gt;Sistema de Grid&lt;/h1&gt;
+ 
+	&lt;div class=&quot;row&quot;&gt; &lt;!--Crea las Filas--&gt;
+	    &lt;div class=&quot;col-sm-6 col-md-4 col-lg-3&quot;&gt;&lt;/div&gt;
+	    &lt;div class=&quot;col-sm-6 col-md-4 col-lg-3&quot;&gt;&lt;/div&gt;
+	    &lt;div class=&quot;col-sm-6 col-md-4 col-lg-3&quot;&gt;&lt;/div&gt;
+	    &lt;div class=&quot;col-sm-6 col-md-12 col-lg-3&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre><div id="20fdaa1e-7601-4968-b1f7-545c8004645b" class="collection-content"><h4 class="collection-title">Medidas</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Extra small&lt;576px</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Small≥576px</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Medium≥768px</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Large≥992px</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Extra large≥1200px</th></tr></thead><tbody><tr id="c3f8540a-3245-4663-92b1-e35bbcb85816"><td class="cell-title"><a href="https://www.notion.so/Max-container-width-c3f8540a3245466392b1e35bbcb85816">Max container width</a></td><td class="cell-P_Vr">None (auto)</td><td class="cell-kVto">540px</td><td class="cell-?cDc">720px</td><td class="cell-XsL|">960px</td></tr><tr id="91da8e93-f5bb-4092-81a3-114c30edae9d"><td class="cell-title"><a href="https://www.notion.so/Class-prefix-91da8e93f5bb409281a3114c30edae9d">Class prefix</a></td><td class="cell-P_Vr"><code>.col-</code></td><td class="cell-kVto"><code>.col-sm-</code></td><td class="cell-?cDc"><code>.col-md-</code></td><td class="cell-XsL|"><code>.col-lg-</code></td></tr><tr id="47422ec1-9ea7-431e-9ab6-2d16c287e5a3"><td class="cell-title"><a href="https://www.notion.so/of-columns-47422ec19ea7431e9ab62d16c287e5a3"># of columns</a></td><td class="cell-P_Vr">12</td><td class="cell-kVto"></td><td class="cell-?cDc"></td><td class="cell-XsL|"></td></tr></tbody></table></div><h2 id="f377887b-9fae-420a-91bc-b7292f48f219" class="block-color-purple">Utilities</h2><h3 id="f68b4b30-3cd6-4a37-97c5-bdc1c3905746" class="block-color-purple">Felx Direction.</h3><p id="6daa2bec-8db1-4b39-83f1-c53f5b31e365" class=""> <code>flex-direction</code>.</p><ul id="ea745cb2-92a1-4021-8337-23c67d4e9003" class="bulleted-list"><li style="list-style-type:disc"><code>.flex-row</code></li></ul><ul id="3a76275b-0fd5-4523-bcaf-3e6ee20639ba" class="bulleted-list"><li style="list-style-type:disc"><code>.flex-row-reverse</code></li></ul><ul id="27f51eae-db2e-4a5b-9191-a31c4887ff21" class="bulleted-list"><li style="list-style-type:disc"><code>.flex-column</code></li></ul><ul id="160017b5-5bea-41e1-a419-bf0b2363d621" class="bulleted-list"><li style="list-style-type:disc"><code>.flex-column-reverse</code></li></ul><hr id="cd60ece8-5b44-4b94-893d-e9f43dc24f10"/><h3 id="36a31d22-26ab-435d-89f1-723a68ba6e93" class="block-color-purple">Justify Content</h3><ul id="e488e30d-f8f7-487e-be07-20777170a883" class="bulleted-list"><li style="list-style-type:disc"><code>.justify-content-start</code></li></ul><ul id="01eb350a-79be-4b7f-a3fb-f20eeb77e492" class="bulleted-list"><li style="list-style-type:disc"><code>.justify-content-end</code></li></ul><ul id="33e5a903-f43f-4ef8-8858-979478403130" class="bulleted-list"><li style="list-style-type:disc"><code>.justify-content-center</code></li></ul><ul id="a0f5236d-9893-4dce-af79-df5ebb633577" class="bulleted-list"><li style="list-style-type:disc"><code>.justify-content-between</code></li></ul><ul id="c464e290-416f-4aa0-8eeb-07a44e54279a" class="bulleted-list"><li style="list-style-type:disc"><code>.justify-content-around</code><pre id="ee38957e-4c7b-4787-afd5-cb9feb0ca3ae" class="code code-wrap"><code>&lt;div class=&quot;row justify-content-between&quot;&gt;
+    &lt;div class=&quot;col-4&quot;&gt;
+      One of two columns
+    &lt;/div&gt;
+    &lt;div class=&quot;col-4&quot;&gt;
+      One of two columns
+    &lt;/div&gt;
+  &lt;/div&gt;</code></pre></li></ul><hr id="bd04e007-a563-4821-9285-22918b897b68"/><h3 id="1d8aa7f8-94c8-4120-9df8-da0a6992368d" class="block-color-purple">Align Items</h3><ul id="99b5b72e-b756-4170-882b-78871b35b6b3" class="bulleted-list"><li style="list-style-type:disc"><code>.align-items-start</code></li></ul><ul id="9020f346-a010-4500-bc2f-61a0d8bd4bd8" class="bulleted-list"><li style="list-style-type:disc"><code>.align-items-end</code></li></ul><ul id="46a8f581-686c-4521-ab98-54e96ca3e0d1" class="bulleted-list"><li style="list-style-type:disc"><code>.align-items-center</code></li></ul><ul id="a819227d-3346-434b-83ba-e024a086426b" class="bulleted-list"><li style="list-style-type:disc"><code>.align-items-baseline</code></li></ul><ul id="5dfd4f48-af9d-4914-a0cc-271e975954a7" class="bulleted-list"><li style="list-style-type:disc"><code>.align-items-stretch</code></li></ul><hr id="74a369b1-9a87-4eff-acd2-018de06ed423"/><h2 id="c5541d13-5456-4af9-b2fe-572a5155baa3" class="block-color-purple">Formularios en Bootstrap</h2><p id="e2446978-26ed-46db-8b21-7e023ac97361" class="">No hay mucho que mostrar, leer el enlace.</p><p id="9840aeb1-7b7b-4f37-8a1f-e64b4d9ad97f" class="">Form Control</p><p id="23fc235d-7dae-4f44-82a7-c9417e9a79ae" class="">Form Grup</p><figure id="f7ce35a2-9036-4b6d-b7b1-06c6d03f973c"><div class="source"><a href="https://getbootstrap.com/docs/5.1/forms/overview/">https://getbootstrap.com/docs/5.1/forms/overview/</a></div></figure><hr id="f915629a-85c2-4c53-8778-81939e1ec8f8"/><h2 id="da0008b1-eb0f-4e0a-a5de-d1539221b116" class="block-color-purple">Navs</h2><p id="bff577f1-c439-4783-8d7b-6282b192df09" class="">Documentación y ejemplos para el potente encabezado de navegación receptivo de Bootstrap, la barra de navegación. Incluye soporte para la marca, navegación y más, incluido el soporte para nuestro complemento de colapso.</p><figure id="a7805701-aafc-4160-be3a-2f2f1f9a27f2"><div class="source"><a href="https://getbootstrap.com/docs/5.1/components/navbar/">https://getbootstrap.com/docs/5.1/components/navbar/</a></div></figure><hr id="b44ed19a-c565-4836-aac5-8a1034201932"/><h2 id="cb723639-f71f-4a31-bd9c-2630dbecbe9e" class="block-color-purple">Icons</h2><p id="bb31a8a5-eeef-426a-b90a-aae857fb09cf" class="">Biblioteca de íconos de código abierto, de alta calidad y gratuita con más de 1300 íconos. Inclúyelos como quieras: SVG, SVG sprite o fuentes web. Úselos con o sin Bootstrap en cualquier proyecto.</p><figure id="57fa1070-7453-4246-8956-c09cdaabd790"><div class="source"><a href="https://icons.getbootstrap.com/">https://icons.getbootstrap.com/</a></div></figure><hr id="a969ee15-9655-4c95-9a9a-6a99ecad922d"/><h2 id="c9884322-7cbd-45ef-9f14-078bdcaef616" class="block-color-purple">Border</h2><p id="6878fed3-fb04-44ea-be67-714d7a324aa0" class="">Utilice las utilidades de borde para diseñar rápidamente el borde y el radio del borde de un elemento. Ideal para imágenes, botones o cualquier otro elemento.</p><figure id="ba6859e2-8581-4ecb-8921-01f326a52cd0"><div class="source"><a href="https://getbootstrap.com/docs/5.1/utilities/borders/">https://getbootstrap.com/docs/5.1/utilities/borders/</a></div></figure><hr id="40f5f9ca-7907-4ddd-bac9-16b4e64ab0f0"/><h2 id="574614c5-2a71-41e4-91ec-7554cee56c57" class="block-color-purple">Shadows</h2><p id="1cbe65a6-2c71-4e54-b064-1df0374a8d43" class="">Agregue o elimine sombras a los elementos con las utilidades de sombra de cuadro.</p><figure id="bc52f91d-96ba-40ec-92fb-26ebd4b20c37"><div class="source"><a href="https://getbootstrap.com/docs/5.1/utilities/shadows/">https://getbootstrap.com/docs/5.1/utilities/shadows/</a></div></figure><hr id="428f2678-82b5-4941-bd81-6b151846b71e"/><h2 id="aefa6113-b653-47ca-84ae-2914ef892b2a" class="block-color-purple">Spacing</h2><p id="911fce0e-410c-4c3f-b659-5fb21d812069" class="">Bootstrap incluye una amplia gama de clases de utilidad abreviada de margen de respuesta, relleno y espacio para modificar la apariencia de un elemento.</p><figure id="c78bc24e-1942-47e6-9f73-4669a029a952"><div class="source"><a href="https://getbootstrap.com/docs/5.1/utilities/spacing/">https://getbootstrap.com/docs/5.1/utilities/spacing/</a></div></figure><hr id="ae62a322-dfcc-4a13-a8d4-a590e89aa0ed"/><h2 id="de829418-ebeb-459b-b1db-b26d00b03b2b" class="block-color-purple">Carousel</h2><p id="4ba17113-84c6-45e1-9edb-b2648eda0c35" class="">El carrusel es una presentación de diapositivas para recorrer una serie de contenido, construido con transformaciones CSS 3D y un poco de JavaScript. Funciona con una serie de imágenes, texto o marcado personalizado. También incluye soporte para controles e indicadores anteriores / siguientes.</p><figure id="37ca4043-a7c6-410b-a472-7996e9b167c6"><div class="source"><a href="https://getbootstrap.com/docs/5.1/components/carousel/">https://getbootstrap.com/docs/5.1/components/carousel/</a></div></figure><hr id="95662242-d730-41e0-8e75-6a0fb06014d2"/><h2 id="a35a1001-ed1d-422e-b3d5-cdb64226354b" class="block-color-purple">Dropdowns</h2><p id="93da486b-3c2b-4968-80dc-8fa5dbd3f456" class="">Cambie las superposiciones contextuales para mostrar listas de enlaces y más con el complemento desplegable Bootstrap.</p><figure id="2c708710-bdc3-4ecf-b6e7-cca537e2ea16"><div class="source"><a href="https://getbootstrap.com/docs/5.1/components/dropdowns/">https://getbootstrap.com/docs/5.1/components/dropdowns/</a></div></figure><hr id="1111fa9b-a05f-440a-8849-eea439c838e7"/><h2 id="171a54fd-313d-4740-841a-b091c7249aca" class="block-color-purple">Spinners</h2><p id="37c9b537-6a41-43e9-a5d7-36e69947225e" class="">Indique el estado de carga de un componente o página con spinners Bootstrap, construido completamente con HTML, CSS y sin JavaScript.</p><figure id="47e55cc0-a80d-426d-979d-87daba5958ec"><div class="source"><a href="https://getbootstrap.com/docs/5.1/components/spinners/">https://getbootstrap.com/docs/5.1/components/spinners/</a></div></figure></div></article></body></html>

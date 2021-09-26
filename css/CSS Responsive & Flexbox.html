@@ -1,0 +1,791 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CSS: Responsive &amp; Flexbox</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="98759248-5267-4b28-bc0a-81383b420b5d" class="page sans"><header><img class="page-cover-image" src="https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🥰</span></div><h1 class="page-title">CSS: Responsive &amp; Flexbox</h1></header><div class="page-body"><hr id="30358654-9f74-492b-b66b-72d99d359eaa"/><h2 id="6487978b-076e-4df0-9768-c5e56c05d213" class="block-color-blue">¿Qué es Flexbox?</h2><p id="9ca99b7e-14ea-4c65-9dd1-b20533e87571" class="">Es una serie de propiedades que usamos para diseñar elementos en nuestra página en una caja de contenido.</p><p id="32adad92-f9da-4862-ad35-62c92b7ff8cd" class="">Tenemos algún contenedor y queremos distribuir el espacio dentro de ese contenedor.</p><hr id="71d6aaa1-fbbe-4665-964a-eb626248e9c3"/><p id="c43afa6a-af84-4539-981c-3a2061188976" class="">
+</p><h2 id="ce05e88e-4364-4eb5-81cb-df6bafe893c8" class="block-color-blue">Display Flex</h2><pre id="b65f0ec4-4588-4834-a6a9-fb3db652e942" class="code"><code>&lt;div class=&quot;contenedor&quot;&gt;
+		&lt;div&gt;&lt;/div&gt; items
+		&lt;div&gt;&lt;/div&gt; items
+		&lt;div&gt;&lt;/div&gt; items
+		&lt;div&gt;&lt;/div&gt; items
+		&lt;div&gt;&lt;/div&gt; items
+&lt;/div&gt;</code></pre><figure id="4471653e-1832-4eee-90ee-c89a0a97db93" class="image"><a href="https://css-tricks.com/wp-content/uploads/2018/10/01-container.svg"><img style="width:576px" src="https://css-tricks.com/wp-content/uploads/2018/10/01-container.svg"/></a></figure><figure id="d467ea6e-a13e-456c-a7ed-7455a4e67b32" class="image"><a href="https://css-tricks.com/wp-content/uploads/2018/10/02-items.svg"><img style="width:576px" src="https://css-tricks.com/wp-content/uploads/2018/10/02-items.svg"/></a></figure><pre id="3fea8db2-c174-4419-acdb-4a8cc8c83cd0" class="code"><code>.contenedor{ /*En el objeto padre es donde se aplica el Display Flex*/
+	display: flex;
+}
+
+.contenedor div{
+	width: 200px; /*Declaramos una ancho y alto*/
+	height: 200px;
+}</code></pre><p id="85c40b4c-0e29-4419-83f3-c3f9f8f141f7" class="">En el ejemplo, los divs empezarán de izquierda a derecha.</p><hr id="86672039-e107-4b29-89af-8a62ac96178c"/><p id="dd732ba6-648e-48a3-accc-5f3299d9be19" class="">
+</p><h2 id="f9ce17d7-982d-4e5f-b960-7608a28b1604" class="block-color-blue"><strong>El eje principal</strong></h2><p id="881ff758-4189-401e-a4fb-371e44790e4e" class="">El eje principal está definido por <strong>flex-direction</strong>, que posee cuatro posibles valores:</p><ul id="350c8bea-cc5f-4da4-a140-3d7bfa75e731" class="bulleted-list"><li style="list-style-type:disc">row (Por default)</li></ul><ul id="aab773d1-77b7-4051-97cb-9cc0a42f2fb7" class="bulleted-list"><li style="list-style-type:disc">row-reverse</li></ul><ul id="95f48475-027f-4fb1-9599-a8eb659614cc" class="bulleted-list"><li style="list-style-type:disc">column</li></ul><ul id="9b5c242f-e6eb-4da6-a88f-49329bf3553c" class="bulleted-list"><li style="list-style-type:disc">column-reverse</li></ul><hr id="4dc4d79f-b5ac-4065-9a02-397a1c615305"/><p id="a9b36451-adf1-4b92-a4f7-62edfef8ee77" class="">
+</p><h2 id="4924e597-42d0-4597-be54-b16f2ef7be0e" class="block-color-blue">Flex Direction</h2><p id="e5e3332d-0a69-4ba6-9b88-c1b9db677d9e" class=""><strong>flex-direction</strong> nos permite decidir la dirección del eje principal en nuestro contenedor.</p><pre id="181cd2fc-9bf6-404f-8bfe-188bffea1471" class="code"><code>.contenedor{ /*En el objeto padre es donde se aplica el Display Flex*/
+	display: flex;
+	flex-direction: row; /*De izquierda a derecha (Por defecto) - Horizontal*/
+	flex-direction: row-reverse; /*Lo mismo que row, pero empieza desde el último*/
+	flex-direction: column; /*Empieza el contenido de arriba hacia abajo - Vertical*/
+	flex-direction: column-reverse; /*Lo mismo, pero empieza desde el último*/
+}</code></pre><figure id="5c180675-3fd0-495f-ac6f-9eef292c3585" class="image"><a href="https://res.cloudinary.com/practicaldev/image/fetch/s----O5J3PQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/4jkkaafn2ef4osrtmhyg.png"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s----O5J3PQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/4jkkaafn2ef4osrtmhyg.png"/></a></figure><hr id="36bcb39c-b03d-4e08-9a2b-5585649609d7"/><p id="e0fad9cc-41cf-4b34-a4d7-e7fc9e8b0185" class="">
+</p><h2 id="e36ccae4-26c5-4dbc-b41d-50292a95f838" class="block-color-blue">Justify Content </h2><p id="a7d491d7-ab9b-4612-91f6-221c6c4cc9e7" class=""><strong>justify-content</strong> determina cómo se distribuye el contenido en el eje principal.</p><pre id="825d6aa3-1793-4243-b48a-a192c6ae1ef1" class="code"><code>.contenedor{ /*En el objeto padre es donde se aplica el Display Flex*/
+	display: flex;
+	flex-direction: row; /*De izquierda a derecha (Por defecto) - Horizontal*/
+	justify-content: flex-start; /*Por defecto, de izquierda a derecha*/
+	justify-content: flex-end; /*El contenido se desplazará al lado de la derecha*/
+	justify-content: center; /*Lo centra a lo largo del eje principal*/
+	justify-content: space-between; /*Distribuye todo el espacio del contenido, 
+																		excepto los bordes exteriores*/
+	justify-content: space-around; /*Distribuye el espacio en partes iguales en 
+																		ambos lados*/
+	justify-content: space-evenly; /*Distribuye el espacio de manera uniforme*/
+}</code></pre><figure id="416422e6-7655-403e-8fec-d123bbfbd161" class="image"><a href="https://programmerclick.com/images/571/ee1011ab183701fe4a3eb2ab6bcd287b.JPEG"><img style="width:288px" src="https://programmerclick.com/images/571/ee1011ab183701fe4a3eb2ab6bcd287b.JPEG"/></a><figcaption>La distribucción si el flex-direction es row.</figcaption></figure><pre id="888902a3-41dd-4510-8cb1-855ff6ab032c" class="code"><code>.contenedor{ /*En el objeto padre es donde se aplica el Display Flex*/
+	display: flex;
+	flex-direction: column; /*De arriba hacia abajo (Por defecto) - Vertical*/
+	justify-content: flex-start; /*Por defecto, de arriba hacia abajo*/
+	justify-content: flex-end; /*El contenido se desplazará hacia abajo*/
+	justify-content: center; /*Lo centra a lo largo del eje principal*/
+	justify-content: space-between; /*Distribuye todo el espacio del contenido, 
+																		excepto los bordes exteriores*/
+	justify-content: space-around; /*Distribuye el espacio en partes iguales en 
+																		ambos lados*/
+	justify-content: space-evenly; /*Distribuye el espacio de manera uniforme*/
+}</code></pre><figure id="374433a3-78c3-40e9-b4fd-16f7afb2289a" class="image"><a href="https://dirask.com/static/bucket/1624478985957-ZBA8Ee1Q5K--image.png"><img style="width:528px" src="https://dirask.com/static/bucket/1624478985957-ZBA8Ee1Q5K--image.png"/></a><figcaption>La distribucción si el flex-direction es column.</figcaption></figure><hr id="f7f229fb-63ba-4087-a6b0-454904729378"/><p id="5a2e92e7-629c-4d7f-8a8d-6b306d8e73d2" class="">
+</p><h2 id="938ee126-27ce-4bcb-8638-fe98e427a25d" class="block-color-blue">Flex Wrap</h2><p id="2e2e07d9-b65e-4aa7-ab2e-926115404cc5" class="">La propiedad<strong> flex-wrap</strong> de CSS especifica si los elementos &quot;hijos&quot; son obligados a permanecer en una misma línea o pueden fluir en varias líneas. Si la cobertura (wrap) está permitida, esta propiedad también te permite controlar la dirección en la cual serán apilados los elementos.</p><figure id="b3379a13-2cd5-4769-9ebc-6c21cdb50468" class="image"><a href="https://css-tricks.com/wp-content/uploads/2018/10/flex-wrap.svg"><img style="width:384px" src="https://css-tricks.com/wp-content/uploads/2018/10/flex-wrap.svg"/></a></figure><pre id="e27385e1-0179-4dfa-bda0-b9b146cb5d6d" class="code"><code>.contenedor{ /*En el objeto padre es donde se aplica el Display Flex*/
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: nowrap; /* Default, todos los elementos flexibles estarán en una línea*/
+	flex-wrap: wrap; /*Los elementos flexibles se envolverán en varias líneas, 
+										de arriba a abajo.*/
+	flex-wrap: wrap-reverse; /*los elementos flexibles se envolverán en varias 
+															líneas de abajo hacia arriba.*/
+}</code></pre><hr id="fb9b533b-078a-4b96-8ff9-7a36cb430abb"/><p id="a4e87cc8-87fc-4e1b-96ec-b5d1810574da" class="">
+</p><h2 id="5260d9b4-7ceb-4de9-bd82-c2c1c13c837c" class="block-color-blue">Align items</h2><p id="c9915a12-e6a2-4c37-81e3-a44cf2c0b262" class=""><strong>Align-items</strong>, distribuirá los articulos a lo largo del eje transversal.</p><p id="e3260407-b20c-47fc-8cd2-1ea101eb2560" class="">Esto define el comportamiento predeterminado de cómo se distribuyen los elementos flexibles a lo largo del eje transversal en la línea actual. Piense en ello como la versión de contenido justificado para el eje transversal (perpendicular al eje principal).</p><pre id="947ecf6b-e4f8-4488-9b85-bcf4106035c9" class="code"><code>.contenedor{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start; /*Empieza desde arriba*/
+	align-items: flex-end; /*Empieza desde abajo*/
+	align-items: flex-center; /*Centra los items*/
+	align-items: flex-strech; /*Estira los items hasta tomar la aultura máxima*/
+	align-items: flex-baseline; /*Toma como referencia el punto central de un item
+															 y los mantiene a raya*/
+}</code></pre><figure id="bb11803a-9885-4b20-afdd-63cd5d07fa86" class="image"><a href="https://css-tricks.com/wp-content/uploads/2018/10/align-items.svg"><img style="width:336px" src="https://css-tricks.com/wp-content/uploads/2018/10/align-items.svg"/></a></figure><hr id="bddadc90-6fdb-4aed-a6d4-32b74fb2e1a4"/><p id="27e5513b-a900-4fe0-b18f-ce32a4c97345" class="">
+</p><h2 id="3963474c-1abf-4e64-8dce-1bbf5b378377" class="block-color-blue">Align-content</h2><p id="a3b6756a-8d2a-41de-9411-8eab6516e8d7" class="">Ajusta las líneas dentro de un contenedor flex cuando hay espacio extra en el eje transversal.</p><pre id="1ea61b53-b94c-4d44-9699-96ebd5671c84" class="code"><code>.contenedor{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+
+	/* Ajusta las líneas desde el inicio del eje transversal */
+	align-content: flex-start;
+	
+	/* Ajusta las líneas desde el final del eje transversal */
+	align-content: flex-end;
+	
+	/* Ajusta las líneas al rededor del centro del eje transversal */
+	align-content: center;
+	
+	/* Distribuye las líneas a lo largo del eje transversal, de principio a fin */
+	align-content: space-between;
+	
+	/* Distribuye las líneas a lo largo del eje transversal, igualmente espaciados */
+	align-content: space-around;
+	
+	/* Estira las líneas para que ocupen el eje transversal completo */
+	align-content: stretch;</code></pre><figure id="22e2df21-0026-4cd6-82a8-c558ae6384bf" class="image"><a href="https://css-tricks.com/wp-content/uploads/2018/10/align-content.svg"><img style="width:384px" src="https://css-tricks.com/wp-content/uploads/2018/10/align-content.svg"/></a></figure><hr id="98ec828d-fdbb-4966-aa90-57632c621395"/><p id="76d13b9d-e665-434d-8503-d38555570646" class="">
+</p><h2 id="6307c601-2dd4-43ec-88cb-f14982501b95" class="block-color-blue">Align Self</h2><p id="32f563e5-4411-4333-a22d-8e5a926bef2c" class="">Esto permite (<strong>align-self</strong>) que se anule la alineación predeterminada (o la especificada por align-items) para elementos flexibles individuales.</p><pre id="47e126b2-6c8a-471b-b6eb-6c3d211c9e31" class="code"><code>.item {
+  align-self: auto | flex-start | flex-end | center | baseline | stretch;
+}</code></pre><figure id="7358a41f-0c94-425c-9a1e-9190e524eb98" class="image"><a href="https://css-tricks.com/wp-content/uploads/2018/10/align-self.svg"><img style="width:432px" src="https://css-tricks.com/wp-content/uploads/2018/10/align-self.svg"/></a></figure><hr id="a4aab936-f606-4982-b66e-c07cde9dcc66"/><p id="5334e55f-91e4-42c3-8598-5b4ca93012ed" class="">
+</p><h2 id="743d6ff8-fe6e-4760-8904-c52475b9a75f" class="block-color-blue">Flex Basis</h2><p id="a2c5a8b3-a4c3-4c5c-864a-e86ed9dbf734" class=""><strong>flex-basis</strong> Determinará el tamaño inicial de un elemento antes de que se coloque en una especie de punto de partida antes de agregarlo a nuestro contenedor flexible.</p><p id="c141ad13-54dd-4cef-8330-d31730c41a6e" class="">Es solo el tamaño inicial en el que se debe agregar un elemento a nuestra caja y podría ser la altura dependiendo de la dirección del eje principal.</p><hr id="4f7fdc79-af10-489b-b0f2-0c194ee5f96e"/><p id="75d398b2-2ab0-45e7-958b-40653607fb69" class="">
+</p><h2 id="12ff3cc9-8037-45c3-8dec-e9e8e3ccc5f2" class="block-color-blue">Flex Grow</h2><p id="ac0a5881-fb0e-4abf-893a-085f442f40ec" class=""><strong>flex-grow</strong> va a controlar la cantidad de espacio que ocupa un elemento si hay espacio disponible.</p><p id="0441c518-39a6-4e64-9d99-4386045649c7" class="">Es solo el tamaño inicial en el que se debe agregar un elemento a nuestra caja y podría ser la altura dependiendo de la dirección del eje principal.</p><pre id="4f116214-16bf-42ad-8228-9bb529eb3e1d" class="code"><code>div{
+	flex-grow: 1; /*A todos los items se les otorgará un crecimiento igual, 
+								tomando todo el espacio disponible*/
+}
+
+/*---------------------------*/
+
+
+div:nth-of-type(1){
+		flex-grow: 1;
+}
+div:nth-of-type(2){
+		flex-grow: 1;
+}
+div:nth-of-type(3){
+		flex-grow: 1;
+}
+
+/*---------------------------*/
+
+div:nth-of-type(1){
+		flex-grow: 1;
+}
+div:nth-of-type(2){
+		flex-grow: 2;
+}
+div:nth-of-type(3){
+		flex-grow: 1;
+}</code></pre><figure id="2948c466-d0f4-42c5-94c1-07758b3e6150" class="image"><a href="https://css-tricks.com/wp-content/uploads/2018/10/flex-grow.svg"><img style="width:432px" src="https://css-tricks.com/wp-content/uploads/2018/10/flex-grow.svg"/></a></figure><hr id="15f0e16d-e2d4-4eff-94db-55a94b591b02"/><p id="88b31961-67df-4a89-b4c7-aabf95116e76" class="">
+</p><h2 id="57f750ec-9d62-458b-898d-22b0e20e1ab1" class="block-color-blue">Flex Shrink</h2><p id="3654a67a-d523-43b2-9a82-b6f8aeda1282" class="">Especifica el factor de contracción de un flex item. Los flex items se encogerán para llenar el contenedor de acuerdo a su número flex-shrink , cuando el tamaño por defecto de los flex items sea mayor al de su contenedor flex container.</p><figure id="5607d792-de54-434f-a8d0-9d947c01aecd" class="image"><a href="https://samanthaming.gumlet.io/flexbox30/23-flex-shrink.jpg.gz"><img style="width:336px" src="https://samanthaming.gumlet.io/flexbox30/23-flex-shrink.jpg.gz"/></a></figure><hr id="0bcc5e4d-3c7b-462f-8b96-92ce27226635"/><p id="0c5a7feb-9703-436c-98fb-43bde63c1b93" class="">
+</p><h2 id="5ce9ce8a-a983-4a69-afc7-de032980cb82" class="block-color-blue">Flex</h2><p id="7dfdce88-27e3-4be1-ae90-f7b3a4f02e6c" class="">Esta es la abreviatura de flex-grow, flex-shrink y flex-base combinados. El segundo y tercer parámetro (flex-shrink y flex-base) son opcionales.</p><pre id="7a4869e8-bb8e-49cc-abe4-c33675056135" class="code"><code>.item {
+  flex: none | [ &lt;&#x27;flex-grow&#x27;&gt; &lt;&#x27;flex-shrink&#x27;&gt;? || &lt;&#x27;flex-basis&#x27;&gt; ]
+}</code></pre><hr id="cd2b8e67-e3f6-4d72-b175-31abab224777"/><p id="398ab576-7382-4aa7-b57a-c83f1896d295" class="">
+</p><h2 id="15714a67-1f85-47ec-9072-bd5faace44ba" class="block-color-blue">¿Qué es Responsive Desing?</h2><p id="4fc9c9a1-5886-472e-bfbd-d0a492e61119" class="">Responsive Desing se refiere a crear sitios web que puedan responder al dispositivo en el que está, ya sea el tamaño de la pantalla, si está en un dispositivo pequeño como un teléfono móvil o un monitor super grande o la orientación del dispositivo.</p><p id="5b27bf1d-efcf-40b9-80d8-6e4d4b2bff70" class="">El objetivo es crear un sitio web único que responda a algo en el dispositivo en el que se muestra.</p><hr id="fb2752c6-cdd0-410f-826a-224537ad4f41"/><p id="b173925a-f506-41f3-b079-dde710d987a9" class="">
+</p><h2 id="f95a7888-4c62-42cf-837d-094391a9606f" class="block-color-blue">Media Queries</h2><p id="586f2090-5270-42af-9286-1bf62ae67a6e" class="">Nos permite cambiar nuestros estilos o agregar nuevos estilos dependiendo de algún parámetro dependiendo del tamaño de la pantalla de dicho dispositivo.</p><pre id="fbf8b5f4-b970-4a97-9be5-f4b09b0d3e31" class="code"><code>@media (min-width: 900px){ /*Si la pantalla tiene 900px o más, hará los cambios*/
+	body{
+			background-color: red;
+	}
+}
+
+
+@media (max-width: 900px){ /*Si la pantalla tiene 900px o menos, hará los cambios*/
+	body{
+			background-color: blue;
+	}
+}
+
+
+/*Si la pantalla está entre 600px y 900px*/
+@media (min-width: 600px) and (max-width: 900px){ 
+		body{
+				background-color: black;
+		}
+}
+
+
+/*Si giras la pantalla*/
+@media (orientation: landscape){
+		body{
+				background-color: green;
+		}
+}</code></pre></div></article></body></html>
